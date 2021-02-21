@@ -22,7 +22,7 @@ export class EditProfileComponent implements OnInit {
       console.log(data);
        this.router.navigate(['showmyprofile']);
     },
-      (error: any) => { console.log(error); }
+      (error: any) => { console.log(error);  }
     );
   }
 
