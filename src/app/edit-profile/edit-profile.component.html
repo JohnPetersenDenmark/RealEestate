@@ -1,0 +1,64 @@
+<div class="container">
+    <form #profileForm="ngForm" (ngSubmit)="saveProfile()">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Editer profil</h3>
+                <div>{{profile.email}}</div>
+                <div>{{profile.id}}</div>
+            </div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label for="fullName">Navn</label>
+                    <input id="fullName" type="text" class="form-control" name="fullName"
+                        [(ngModel)]="profile.fullName">
+                </div>
+
+                <div class="form-group">
+                    <label for="address1">Adresse</label>
+                    <input id="address1" type="text" class="form-control" name="address1"
+                        [(ngModel)]="profile.address1">
+                </div>
+
+                <div class="form-group">
+                    <label for="address2">Adresse</label>
+                    <input id="address2" type="text" class="form-control" name="address2"
+                        [(ngModel)]="profile.address2">
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">Postnummer</label>
+                    <input id="zip" type="text" class="form-control" name="zip" [(ngModel)]="profile.zip">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">By</label>
+                    <input id="city" type="text" class="form-control" name="city" [(ngModel)]="profile.city">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input id="phone" type="text" class="form-control" name="phone" [(ngModel)]="profile.phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="createdDate">Oprettet</label>
+                    <input id="createdDate" type="text" class="form-control" name="createdDate"
+                        [(ngModel)]="profile.createdDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="modifiedDate">Oprettet</label>
+                    <input id="modifiedDate" type="text" class="form-control" name="modifiedDate"
+                        [(ngModel)]="profile.modifiedDate">
+                </div>
+
+
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-primary" [disabled]="profileForm.invalid" type="submit">Gem</button>
+            </div>
+        </div>
+    </form>
+</div>
+{{profileForm.value | json}}

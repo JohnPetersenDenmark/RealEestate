@@ -1,0 +1,56 @@
+
+    <div class="panel-heading">
+        <h3 class="panel-title">{{viewModel.email}} {{viewModel.id}}</h3>
+    </div>
+    <div class="row">
+        <div class="col-6">
+           Navn
+        </div>
+        <div class="col-6">
+            {{viewModel.fullName}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Adresse
+        </div>
+        <div class="col-6">
+            {{viewModel.address1}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Adresse
+        </div>
+        <div class="col-6">
+            {{viewModel.address2}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Phone
+        </div>
+        <div class="col-6">
+            {{viewModel.phone}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Oprettet
+        </div>
+        <div class="col-6">
+            {{viewModel.createdDate}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Ændret
+        </div>
+        <div class="col-6">
+            {{viewModel.modifiedDate}}
+        </div>
+    </div>
+
+    <div class="panel-footer">
+        <button class="btn btn-primary" type="button" (click)="godEditProfile()">Rediger</button>
+      </div> 

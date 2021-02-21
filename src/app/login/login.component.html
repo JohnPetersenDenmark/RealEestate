@@ -1,0 +1,40 @@
+<div class="container">
+    <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Log ind</h3>
+            </div>
+            <div class="panel-body">
+
+
+                <div class="form-group" [class.has-error]="emailControl.invalid && emailControl.touched">
+                    <label for="email" class="control-label">Email</label>
+                    <input id="email" required email type="text" class="form-control" name="email"
+                        [(ngModel)]="login.email" #emailControl="ngModel">
+                    <span class="help-block" *ngIf="emailControl.errors?.required && emailControl.touched">
+                        Email skal angives
+                    </span>
+                    <span class="help-block" *ngIf="emailControl.errors?.email && emailControl.touched">
+                        Det er ikke en gyldig email
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-error]="password.touched && password.invalid">
+                    <label for="password" class="control-label">Indtast kodeord</label>
+                    <input id="password" required type="text" class="form-control" name="password"
+                         [(ngModel)]="login.password"
+                        #password="ngModel">
+                    <span class="help-block" *ngIf="password.touched && password.errors?.required">
+                        Kodeord skal udfyldes
+                    </span>
+                </div>
+                
+                <div class="panel-footer">
+                    <button class="btn btn-primary" [disabled]="loginForm.invalid" type="submit">Gem</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+{{loginForm.value | json}}

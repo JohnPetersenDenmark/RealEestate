@@ -1,0 +1,55 @@
+<div class="container">
+  <form #profileForm="ngForm" (ngSubmit)="saveProfile(profileForm)">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Opret profil</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="form-group" [class.has-error]="emailControl.invalid && emailControl.touched">
+          <label for="email" class="control-label">Email</label>
+          <input id="email" required email type="text" class="form-control" name="email" [(ngModel)]="profile.email"
+            #emailControl="ngModel">
+          <span class="help-block" *ngIf="emailControl.errors?.required && emailControl.touched">
+            Email skal angives
+          </span>
+          <span class="help-block" *ngIf="emailControl.errors?.email && emailControl.touched">
+            Det er ikke en gyldig email
+          </span>
+        </div>
+
+       
+
+        <div ngModelGroup="passwordGroup" [class.has-error]="confirmPassword.touched && confirmPassword.invalid && !confirmPassword.errors?.required">
+          <div class="form-group" [class.has-error]="password.touched && password.invalid">
+            <label for="password" class="control-label">Indtast kodeord</label>
+            <input id="password" required type="text" class="form-control" name="password"
+             (input)="confirmPassword.control.updateValueAndValidity()"
+              [(ngModel)]="profile.password" #password="ngModel">
+            <span class="help-block" *ngIf="password.touched && password.errors?.required">
+              Kodeord skal udfyldes
+            </span>
+          </div>
+
+          <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+            <label for="confirmPassword" class="control-label">Indtast kodeord igen</label>
+            <input name="confirmPassword" formcompare2fieldsValidatorDirective="password" required id="confirmPassword"
+              type="text" class="form-control" [(ngModel)]="profile.confirmPassword" #confirmPassword="ngModel">
+            <span class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
+              Indtast kodeord igen skal udfyldes
+            </span>
+            <span class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual &&
+             !confirmPassword.errors?.required">
+              Kodeord og gentaget kodeord er ikke ens
+            </span>
+          </div>
+
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary"  [disabled]="profileForm.invalid" type="submit">Gem</button>
+      </div> 
+    </div>
+  </form>
+</div>
+{{profileForm.value | json}}
