@@ -8,6 +8,6 @@ export class Profile {
     zip : string = "";
     city : string = "";
     phone : string = "";
-    createdDate : string = "";
-    modifiedDate : string = "";
+    createdDate : Date = new Date;
+    modifiedDate :  Date = new Date;
 }

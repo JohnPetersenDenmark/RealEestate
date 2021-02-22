@@ -1,4 +1,7 @@
 <div class="container">
+  <div >
+    {{isLoggedIn}}
+  </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Eestate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,16 +13,19 @@
         <li class="nav-item active">
           <a class="nav-link" routerLink="home">Forside <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">          
+        <li *ngIf="!isLoggedIn" class="nav-item">          
           <a class="nav-link" routerLink="login">log ind</a>
         </li>
-        <li class="nav-item">          
+        <li *ngIf="isLoggedIn" class="nav-item">          
+          <a class="nav-link" routerLink="logout">log ud</a>
+        </li> 
+        <li *ngIf="isLoggedIn" class="nav-item">          
             <a class="nav-link" routerLink="showmyprofile">Min profil</a>
           </li>
-          <li class="nav-item">          
+          <li *ngIf="!isLoggedIn" class="nav-item">          
             <a class="nav-link" routerLink="createprofile">Opret profil</a>
           </li>
-          <li class="nav-item">          
+          <li *ngIf="isLoggedIn"class="nav-item">          
             <a class="nav-link" routerLink="list-estates">Ejendomme</a>
           </li>
         <li class="nav-item dropdown">

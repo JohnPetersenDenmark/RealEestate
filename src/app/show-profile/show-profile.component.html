@@ -1,6 +1,6 @@
 
     <div class="panel-heading">
-        <h3 class="panel-title">{{viewModel.email}} {{viewModel.id}}</h3>
+        <h3 class="panel-title">{{viewModel.email}}</h3>
     </div>
     <div class="row">
         <div class="col-6">
@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-6">
-            Adresse
+            Adresselinje1
         </div>
         <div class="col-6">
             {{viewModel.address1}}
@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-6">
-            Adresse
+            Adresselinje 2
         </div>
         <div class="col-6">
             {{viewModel.address2}}
@@ -28,7 +28,23 @@
     </div>
     <div class="row">
         <div class="col-6">
-            Phone
+            Postnummer
+        </div>
+        <div class="col-6">
+            {{viewModel.zip}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            By
+        </div>
+        <div class="col-6">
+            {{viewModel.city}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Telefon
         </div>
         <div class="col-6">
             {{viewModel.phone}}
@@ -39,15 +55,15 @@
             Oprettet
         </div>
         <div class="col-6">
-            {{viewModel.createdDate}}
+            {{viewModel.createdDate  | date:'dd-MM-yyyy Kl.: hh:mm'}}
         </div>
     </div>
     <div class="row">
         <div class="col-6">
             Ændret
         </div>
-        <div class="col-6">
-            {{viewModel.modifiedDate}}
+        <div class="col-6">           
+            {{viewModel.modifiedDate | date:'dd-MM-yyyy Kl.: hh:mm'}}
         </div>
     </div>
 

@@ -16,6 +16,7 @@ import { ListEstatesComponent } from './list-estates/list-estates.component';
 import { AuthenticationInterceptor } from './authentication.interceptor';
 import { EstateService } from './estate.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const appRoutes : Routes = [
@@ -24,7 +25,8 @@ const appRoutes : Routes = [
 {path: 'showmyprofile', component : ShowProfileComponent},
 {path: 'editprofile', component : EditProfileComponent},
 {path: 'createprofile', component : CreateProfileComponent},
-{path: 'list-estates', component : ListEstatesComponent}
+{path: 'list-estates', component : ListEstatesComponent},
+{path: 'logout', component : LogoutComponent}
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const appRoutes : Routes = [
     Compare2fieldsValidatorDirective,
     ShowProfileComponent,
     ListEstatesComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

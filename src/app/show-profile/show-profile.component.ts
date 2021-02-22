@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Profile } from '../models/profile.model';
 import { ProfileService } from '../profile.service';
 
@@ -11,6 +12,8 @@ import { ProfileService } from '../profile.service';
 export class ShowProfileComponent implements OnInit {
 
   viewModel: Profile = new Profile;
+
+  
 
   constructor(private _profileService: ProfileService, private router: Router) { }
 
@@ -35,6 +38,8 @@ export class ShowProfileComponent implements OnInit {
             this.viewModel.zip = x.zip;
             this.viewModel.city = x.city;
             this.viewModel.phone = x.phone;
+            this.viewModel.createdDate = x.createdDate;
+            this.viewModel.modifiedDate = x.modifiedDate;
       },
       error: (err: any) => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
