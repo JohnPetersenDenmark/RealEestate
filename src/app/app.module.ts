@@ -17,6 +17,11 @@ import { AuthenticationInterceptor } from './authentication.interceptor';
 import { EstateService } from './estate.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ShowEstateComponent } from './show-estate/show-estate.component';
+import { CreateEstateComponent } from './create-estate/create-estate.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { DndDirective } from './dnd.directive';
+import { ProgressComponent } from './progress/progress/progress.component';
 
 
 const appRoutes : Routes = [
@@ -26,7 +31,9 @@ const appRoutes : Routes = [
 {path: 'editprofile', component : EditProfileComponent},
 {path: 'createprofile', component : CreateProfileComponent},
 {path: 'list-estates', component : ListEstatesComponent},
-{path: 'logout', component : LogoutComponent}
+{path: 'myestate', component : CreateEstateComponent},
+{path: 'logout', component : LogoutComponent},
+{path: 'upload', component : UploadFileComponent}
 ];
 
 @NgModule({
@@ -39,7 +46,12 @@ const appRoutes : Routes = [
     ShowProfileComponent,
     ListEstatesComponent,
     EditProfileComponent,
-    LogoutComponent
+    LogoutComponent,
+    ShowEstateComponent,
+    CreateEstateComponent,
+    UploadFileComponent,
+    DndDirective,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
