@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Estate } from '../models/Estate.model';
 
@@ -8,17 +9,35 @@ import { Estate } from '../models/Estate.model';
 })
 export class UploadFileComponent implements OnInit {
 
-  
+
   @ViewChild("fileDropRef", { static: false })
   fileDropEl!: ElementRef;
-  
-  constructor() { }
+
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-   
+
   }
- 
+
   files: any[] = [];
+
+
+  UploadFilesToServer() {
+   
+
+    this.files.forEach(element => {
+      let file = <File>element;
+      console.log(file)
+      const formData = new FormData();
+      formData.append(file.type, file, file.name);     
+      console.log(formData);
+      this.httpClient.post("https://localhost:44303/api/Estates/uploadFile", formData , )
+        .subscribe(res => {
+          console.log(res);
+        });
+    });
+
+  }
 
   /**
    * on file drop handler
@@ -30,10 +49,12 @@ export class UploadFileComponent implements OnInit {
   /**
    * handle file from browsing
    */
-  fileBrowseHandler($even: any) {
-    let files: any = $even.target.files[0]; 
-    console.log(files[0])
-    this.prepareFilesList(files);
+  fileBrowseHandler(e: Event) {
+
+    const element = e.currentTarget as HTMLInputElement;
+    let fileList: any | null = element.files;
+    //console.log(files[0])
+    this.prepareFilesList(fileList);
   }
 
   /**
