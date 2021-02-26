@@ -21,7 +21,7 @@ import { ShowEstateComponent } from './show-estate/show-estate.component';
 import { CreateEstateComponent } from './create-estate/create-estate.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { DndDirective } from './dnd.directive';
-import { ProgressComponent } from './progress/progress/progress.component';
+import { ProgressComponent } from './Progress/progress/progress.component'
 
 
 const appRoutes : Routes = [
@@ -31,7 +31,7 @@ const appRoutes : Routes = [
 {path: 'editprofile', component : EditProfileComponent},
 {path: 'createprofile', component : CreateProfileComponent},
 {path: 'list-estates', component : ListEstatesComponent},
-{path: 'myestate', component : CreateEstateComponent},
+{path: 'estate', component : CreateEstateComponent},
 {path: 'logout', component : LogoutComponent},
 {path: 'upload', component : UploadFileComponent}
 ];

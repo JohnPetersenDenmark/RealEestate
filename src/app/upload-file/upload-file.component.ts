@@ -29,9 +29,11 @@ export class UploadFileComponent implements OnInit {
       let file = <File>element;
       console.log(file)
       const formData = new FormData();
-      formData.append(file.type, file, file.name);     
+      formData.append(file.type, file, file.name);    
+      formData.append("EstateId", "7000");  
+      formData.append("profileId", "6150");  
       console.log(formData);
-      this.httpClient.post("https://localhost:44303/api/Estates/uploadFile", formData , )
+      this.httpClient.post("https://localhost:44303/api/Upload/uploadFile", formData , )
         .subscribe(res => {
           console.log(res);
         });

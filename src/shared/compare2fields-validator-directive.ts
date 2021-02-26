@@ -17,7 +17,7 @@ export class Compare2fieldsValidatorDirective implements Validator
 {
     @Input() formcompare2fieldsValidatorDirective : string = "";
 
-    public validate(control : AbstractControl) : { [key : string] : any } | null
+     validate(control : AbstractControl) : { [key : string] : any } | null
     {
         const controlToCompare = control.parent?.get(this.formcompare2fieldsValidatorDirective);
         if ( controlToCompare && controlToCompare.value !== control.value)

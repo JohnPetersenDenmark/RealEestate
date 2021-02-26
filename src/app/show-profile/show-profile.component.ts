@@ -47,4 +47,8 @@ export class ShowProfileComponent implements OnInit {
     myObserverable.subscribe(myObserver);
   }
 
+  createEstate() : void {
+    this._profileService.currentProfile = this.viewModel;
+    this.router.navigate(["estate"]);
+  }
 }

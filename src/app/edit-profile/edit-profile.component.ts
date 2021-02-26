@@ -26,6 +26,8 @@ export class EditProfileComponent implements OnInit {
     );
   }
 
+
+
   ngOnInit(): void {
     this.profile = this._profileService.currentProfile
   }

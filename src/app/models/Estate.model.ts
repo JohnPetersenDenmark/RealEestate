@@ -4,13 +4,13 @@ export class Estate {
     Address2 : string = "";
     Zip : string = "";
     City : string = "";
-    Price: number = 0;
+    Price: string = "";
     EstateType: string = "Villa";
     Areal: string = "";
     VaegtetAreal: string = "";
     GrundAreal: string = "";
-    EjerudgiftPrMd: number = 0;
-    PrisPrM2: number = 0;
+    EjerudgiftPrMd: string = "";
+    PrisPrM2: string = "";
     Liggetid: string = "";
     RegistrationNumber: string = "";
     BuyerIdentityUserIds: string = "";
