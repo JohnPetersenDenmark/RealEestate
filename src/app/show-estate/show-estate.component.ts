@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { EstateService } from '../estate.service';
 
 @Component({
   selector: 'app-show-estate',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowEstateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private estateService: EstateService, private router: Router) { }
+
+selectedEstate: any ;
+
 
   ngOnInit(): void {
+   this.selectedEstate = this.estateService.selectedEstate;
   }
 
 }

@@ -31,6 +31,7 @@ const appRoutes : Routes = [
 {path: 'editprofile', component : EditProfileComponent},
 {path: 'createprofile', component : CreateProfileComponent},
 {path: 'list-estates', component : ListEstatesComponent},
+{path: 'show-estate', component : ShowEstateComponent},
 {path: 'estate', component : CreateEstateComponent},
 {path: 'logout', component : LogoutComponent},
 {path: 'upload', component : UploadFileComponent}

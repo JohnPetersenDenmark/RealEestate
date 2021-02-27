@@ -67,7 +67,29 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-primary" type="button" (click)="godEditProfile()">Rediger</button>
+        </div>
+        <div class="col-6">                     
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <h1>Mine salg</h1>
+            <div *ngFor="let estate of estates">
+                <div id="{{estate.Id}}" (click)="goReadEstate($event)">
+                    {{estate.Address1}} {{estate.Zip}} {{estate.City}}          
+                </div>       
+            </div>
+        </div>     
+        <button class="btn btn-primary" type="button" (click)="createEstate()">Nyt salg</button>        
+    </div>
+
+   
+
     <div class="panel-footer">
-        <button class="btn btn-primary" type="button" (click)="godEditProfile()">Rediger</button>
-        <button class="btn btn-primary" type="button" (click)="createEstate()">Nyt salg</button>
+       
+      
       </div> 
