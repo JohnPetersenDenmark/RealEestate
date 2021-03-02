@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DownloadFileService } from '../download-file.service';
 import { EstateService } from '../estate.service';
 
 @Component({
@@ -9,13 +10,21 @@ import { EstateService } from '../estate.service';
 })
 export class ShowEstateComponent implements OnInit {
 
-  constructor(private estateService: EstateService, private router: Router) { }
+  constructor(private downloadFileService: DownloadFileService, private estateService: EstateService, private router: Router) { }
 
-selectedEstate: any ;
+  selectedEstate: any;
 
+  downloadFiles: any[] = [];
+  downloadImages: any[] = [];
 
   ngOnInit(): void {
-   this.selectedEstate = this.estateService.selectedEstate;
+    this.selectedEstate = this.estateService.selectedEstate;
+
+    this.downloadFileService.getEstateUploadedFiles(this.selectedEstate).subscribe((x: any[]) => {
+      this.downloadFiles = x;
+      this.downloadImages = x;
+    });
   }
 
+  
 }

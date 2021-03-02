@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Estate } from '../models/Estate.model';
 
@@ -23,23 +23,41 @@ export class UploadFileComponent implements OnInit {
 
 
   UploadFilesToServer() {
-   
-
+    let index = 0;
     this.files.forEach(element => {
+      console.log("dette er et fileobject" + element)
       let file = <File>element;
       console.log(file)
       const formData = new FormData();
-      formData.append(file.type, file, file.name);    
-      formData.append("EstateId", "7000");  
-      formData.append("profileId", "6150");  
+      formData.append(file.type, file, file.name);
+      formData.append("EstateId", "7000");
+      formData.append("profileId", "6150");
       console.log(formData);
-      this.httpClient.post("https://localhost:44303/api/Upload/uploadFile", formData , )
-        .subscribe(res => {
-          console.log(res);
-        });
+      this.dummyHelperFunction(index, formData)
+      index = index + 1;
     });
 
   }
+
+
+  dummyHelperFunction(localIndex: number, localFormDate: FormData): void {
+    this.httpClient.post("https://localhost:44303/api/Upload/uploadFile", localFormDate, {
+      reportProgress: true,
+      observe: 'events'
+    })
+      .subscribe(res => {
+        if (res.type === HttpEventType.UploadProgress) {
+          if (res.total != undefined) {
+            const percentDone = Math.round(100 * res.loaded / res.total);
+            this.files[localIndex].progress = percentDone;
+            console.log('Progress ' + percentDone + '%');
+          }
+        }
+
+        console.log("we uploaded a file" + res);
+      });
+  }
+
 
   /**
    * on file drop handler
@@ -68,26 +86,6 @@ export class UploadFileComponent implements OnInit {
   }
 
   /**
-   * Simulate the upload process
-   */
-  uploadFilesSimulator(index: number) {
-    setTimeout(() => {
-      if (index === this.files.length) {
-        return;
-      } else {
-        const progressInterval = setInterval(() => {
-          if (this.files[index].progress === 100) {
-            clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
-          } else {
-            this.files[index].progress += 5;
-          }
-        }, 200);
-      }
-    }, 1000);
-  }
-
-  /**
    * Convert Files list to normal array list
    * @param files (Files List)
    */
@@ -96,7 +94,6 @@ export class UploadFileComponent implements OnInit {
       item.progress = 0;
       this.files.push(item);
     }
-    this.uploadFilesSimulator(0);
   }
 
   /**

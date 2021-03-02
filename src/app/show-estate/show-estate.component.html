@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container">    
     <div class="panel-heading">
         <h3 class="panel-title">{{selectedEstate.Address1}}</h3>
     </div>
@@ -26,4 +26,10 @@
             {{selectedEstate.City}}
         </div>
     </div>
+    <app-show-image [downloadImages]="downloadImages"></app-show-image> 
+    <app-show-file [downloadFiles]="downloadFiles"></app-show-file>
+
+   
+    
+    
 </div>

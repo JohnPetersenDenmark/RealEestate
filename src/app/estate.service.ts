@@ -39,8 +39,23 @@ export class EstateService {
     frontEndEstate.Id = backEndEstate.id;
     frontEndEstate.Address1 = backEndEstate.address1;
     frontEndEstate.Address2 = backEndEstate.address2;
-    frontEndEstate.Areal = backEndEstate.areal;
+    frontEndEstate.Zip = backEndEstate.zip;
     frontEndEstate.City = backEndEstate.city;
+    frontEndEstate.Price = backEndEstate.price;
+
+    frontEndEstate.EstateType = backEndEstate.estateType;
+    frontEndEstate.Areal = backEndEstate.areal;
+    frontEndEstate.VaegtetAreal = backEndEstate.vaegtetAreal;
+    frontEndEstate.GrundAreal = backEndEstate.grundAreal;
+    frontEndEstate.EjerudgiftPrMd = backEndEstate.ejerudgiftPrMd;
+    frontEndEstate.PrisPrM2 = backEndEstate.prisPrM2;
+    frontEndEstate.Liggetid = backEndEstate.liggetid;
+    frontEndEstate.RegistrationNumber = backEndEstate.registrationNumber;
+    frontEndEstate.BuyerIdentityUserIds = backEndEstate.buyerIdentityUserIds;
+    frontEndEstate.OwnerIdentityUserIds = backEndEstate.ownerIdentityUserIds;
+    frontEndEstate.CreatedDate = backEndEstate.CreatedDate;
+    frontEndEstate.ModifiedDate = backEndEstate.ModifiedDate;
+
     return frontEndEstate;
   }
 

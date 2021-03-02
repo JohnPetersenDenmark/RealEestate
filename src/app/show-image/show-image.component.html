@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-6">
+        <h1>Billeder</h1>
+        <div *ngFor="let downloadImage of downloadImages">
+            <div id="{{downloadImage.id}}" (click)="imageDoSomeThing($event)">
+                "{{downloadImage.uniqueFileName}}  
+            </div>       
+        </div>
+    </div>             
+</div>
+
+<app-upload-file></app-upload-file>

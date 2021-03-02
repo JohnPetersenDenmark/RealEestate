@@ -21,7 +21,10 @@ import { ShowEstateComponent } from './show-estate/show-estate.component';
 import { CreateEstateComponent } from './create-estate/create-estate.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { DndDirective } from './dnd.directive';
-import { ProgressComponent } from './Progress/progress/progress.component'
+import { ProgressComponent } from './Progress/progress/progress.component';
+import { DownloadFileComponent } from './download-file/download-file.component';
+import { ShowFileComponent } from './show-file/show-file.component';
+import { ShowImageComponent } from './show-image/show-image.component'
 
 
 const appRoutes : Routes = [
@@ -52,7 +55,10 @@ const appRoutes : Routes = [
     CreateEstateComponent,
     UploadFileComponent,
     DndDirective,
-    ProgressComponent
+    ProgressComponent,
+    DownloadFileComponent,
+    ShowFileComponent,
+    ShowImageComponent
   ],
   imports: [
     BrowserModule,
