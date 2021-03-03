@@ -1,0 +1,7 @@
+.minimenu {
+    margin: 10px;
+    display: block;
+   cursor: pointer;
+   border-width: 1px;
+    border-color: red;
+}

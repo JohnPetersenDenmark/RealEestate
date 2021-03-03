@@ -24,9 +24,10 @@ import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './Progress/progress/progress.component';
 import { DownloadFileComponent } from './download-file/download-file.component';
 import { ShowFileComponent } from './show-file/show-file.component';
-import { ShowImageComponent } from './show-image/show-image.component'
+import { ShowImageComponent } from './show-image/show-image.component';
+import { AddFileComponent } from './add-file/add-file.component'
 
-
+ 
 const appRoutes : Routes = [
 {path: 'login', component : LoginComponent}, 
 {path: 'profile', component : ProfileComponent},
@@ -37,7 +38,9 @@ const appRoutes : Routes = [
 {path: 'show-estate', component : ShowEstateComponent},
 {path: 'estate', component : CreateEstateComponent},
 {path: 'logout', component : LogoutComponent},
-{path: 'upload', component : UploadFileComponent}
+{path: 'upload', component : UploadFileComponent},
+{path: 'add-file', component : AddFileComponent}
+
 ];
 
 @NgModule({
@@ -58,7 +61,8 @@ const appRoutes : Routes = [
     ProgressComponent,
     DownloadFileComponent,
     ShowFileComponent,
-    ShowImageComponent
+    ShowImageComponent,
+    AddFileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
+import { EstateDocumentType } from '../models/document-type.model';
 import { Estate } from '../models/Estate.model';
+import { UploadFileService } from '../upload-file.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -13,14 +15,16 @@ export class UploadFileComponent implements OnInit {
   @ViewChild("fileDropRef", { static: false })
   fileDropEl!: ElementRef;
 
-  constructor(private httpClient: HttpClient) { }
+  @Input() selectedDocType: EstateDocumentType = new (EstateDocumentType);
 
-  ngOnInit(): void {
+  constructor(private httpClient: HttpClient, private uploadService: UploadFileService) { }
 
-  }
-
+ 
   files: any[] = [];
 
+  ngOnInit(): void {
+   
+  }
 
   UploadFilesToServer() {
     let index = 0;
@@ -30,6 +34,7 @@ export class UploadFileComponent implements OnInit {
       console.log(file)
       const formData = new FormData();
       formData.append(file.type, file, file.name);
+      formData.append("DocumentTypeId", this.selectedDocType.id);
       formData.append("EstateId", "7000");
       formData.append("profileId", "6150");
       console.log(formData);

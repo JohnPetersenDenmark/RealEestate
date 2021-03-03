@@ -1,14 +1,21 @@
-    <div class="row">
-        <div class="col-6">
-            <h1>Dokumenter</h1>
-            <div *ngFor="let downloadFile of downloadFiles let i = index" >
-                <div id="{{downloadFile.id}}" >
-                    "{{downloadFile.uniqueFileName}}  
-                    <button class="btn btn-primary" type="button" (click)="downLoadDocument(i)">Download</button>    
-                    <button class="btn btn-primary" type="button" (click)="viewDocument(i)">Se i browser</button>    
-                </div>       
-            </div>
-        </div>             
-    </div>
+<h2>Dokumenter</h2>
+<div *ngFor="let downloadFile of downloadFiles let i = index">
+    <div class="list-group-item" (click)="showMenu(i)">
+        {{downloadFile.id}}  {{downloadFile.documentDescription}}
+        <div *ngIf="downloadFile.id == selectedId" id="{{downloadFile.id}}">
+            <span class="minimenu" (click)="downLoadDocument(i)">
+                Download
+            </span>
 
-    <app-upload-file></app-upload-file>
+            <span class="minimenu" (click)="viewDocument(i)">
+                vis
+            </span>
+
+            <span class="minimenu" (click)="deleteDocument(i)">
+                Slet
+            </span>
+        </div>
+    </div>
+    <br>
+</div>
+<button class="btn btn-outline-secondary btn-sm" type="button" (click)="addDocument()">Tilføj dokument</button>

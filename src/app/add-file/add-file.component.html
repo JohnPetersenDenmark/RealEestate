@@ -1,0 +1,9 @@
+<select id="doctypes" name="doctypes" [(ngModel)]="selectedDocType.id" class="form-control" (change)="showSelected()">
+    <option *ngFor="let docType of docTypes" [value]="docType.id">
+        {{docType.description}}        
+    </option>
+</select>
+
+
+
+<app-upload-file [selectedDocType]="selectedDocType"></app-upload-file>
