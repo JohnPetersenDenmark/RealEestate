@@ -3,9 +3,16 @@
         <h1>Billeder</h1>
         <div *ngFor="let downloadImage of downloadImages">
             <div id="{{downloadImage.id}}" (click)="imageDoSomeThing($event)">
-                "{{downloadImage.uniqueFileName}}  
-            </div>       
+                "{{downloadImage.uniqueFileName}}
+            </div>
         </div>
-    </div>             
+    </div>
 </div>
 
+<div class="row">
+    <div class="col-6">
+        <app-estate-imgage-carousel></app-estate-imgage-carousel>
+    </div>
+</div>
+
+<button class="btn btn-outline-secondary btn-sm" type="button" (click)="addImage()">Tilføj billede</button>

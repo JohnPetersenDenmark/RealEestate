@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DownloadFileService } from '../download-file.service';
 
 @Component({
   selector: 'app-show-image',
@@ -8,12 +10,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ShowImageComponent implements OnInit {
 
   @Input() downloadImages : any[] = [];
-  constructor() { }
+  constructor(private downloadFileService: DownloadFileService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   imageDoSomeThing(event: Event) : void {
 
+  }
+
+  addImage(): void {
+    this.router.navigate(["add-image"]);
   }
 }

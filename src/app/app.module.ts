@@ -25,7 +25,11 @@ import { ProgressComponent } from './Progress/progress/progress.component';
 import { DownloadFileComponent } from './download-file/download-file.component';
 import { ShowFileComponent } from './show-file/show-file.component';
 import { ShowImageComponent } from './show-image/show-image.component';
-import { AddFileComponent } from './add-file/add-file.component'
+import { AddFileComponent } from './add-file/add-file.component';
+import { EstateImgageCarouselComponent } from './estate-imgage-carousel/estate-imgage-carousel.component';
+import { AddImageComponent } from './add-image/add-image.component';
+
+
 
  
 const appRoutes : Routes = [
@@ -39,8 +43,8 @@ const appRoutes : Routes = [
 {path: 'estate', component : CreateEstateComponent},
 {path: 'logout', component : LogoutComponent},
 {path: 'upload', component : UploadFileComponent},
-{path: 'add-file', component : AddFileComponent}
-
+{path: 'add-file', component : AddFileComponent},
+{path: 'add-image', component : AddImageComponent}
 ];
 
 @NgModule({
@@ -62,7 +66,9 @@ const appRoutes : Routes = [
     DownloadFileComponent,
     ShowFileComponent,
     ShowImageComponent,
-    AddFileComponent
+    AddFileComponent,
+    EstateImgageCarouselComponent,
+    AddImageComponent,    
   ],
   imports: [
     BrowserModule,
