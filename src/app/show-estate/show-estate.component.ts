@@ -20,11 +20,25 @@ export class ShowEstateComponent implements OnInit {
   ngOnInit(): void {
     this.selectedEstate = this.estateService.selectedEstate;
 
+    console.log("sow estate estate id" + this.selectedEstate.Id)
+
     this.downloadFileService.getEstateUploadedFiles(this.selectedEstate).subscribe((x: any[]) => {
-      this.downloadFiles = x;
-      this.downloadImages = x;
+      
+      x.forEach(downLoadedFile => {
+        if (downLoadedFile.fileCategory == "image")
+        {
+          this.downloadImages.push(downLoadedFile);
+        }
+        else{
+          this.downloadFiles.push(downLoadedFile);
+        }
+
+      });
+          
+
+      console.log("antal downloadede images " + this.downloadImages.length)
     });
   }
 
-  
+
 }

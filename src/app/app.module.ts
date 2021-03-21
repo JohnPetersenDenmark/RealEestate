@@ -28,6 +28,7 @@ import { ShowImageComponent } from './show-image/show-image.component';
 import { AddFileComponent } from './add-file/add-file.component';
 import { EstateImgageCarouselComponent } from './estate-imgage-carousel/estate-imgage-carousel.component';
 import { AddImageComponent } from './add-image/add-image.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -74,7 +75,8 @@ const appRoutes : Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule
    
   ],
   providers: [ProfileService, EstateService, { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],

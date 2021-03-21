@@ -8,7 +8,9 @@ import { EstateDocumentType } from '../models/document-type.model';
 })
 export class AddImageComponent implements OnInit {
 
-  selectedDocType: EstateDocumentType = {id: "10", description: "dummy", helpText: "dummy"}
+  fileCategory : string = "image";
+
+  selectedDocType: EstateDocumentType = {id: "10", description: "dummy", helpText: "dummys"}
   constructor() { }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 
 <div>{{selectedDocType.id}}
 	{{selectedDocType.description}}
-	{{selectedDocType.helpText}}
+	{{selectedDocType.helpText}}	
 </div>
 <div class="container" appDnd (fileDropped)="onFileDropped($event)">	
 	<input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" />

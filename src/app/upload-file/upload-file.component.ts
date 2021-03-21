@@ -1,7 +1,9 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
+import { EstateService } from '../estate.service';
 import { EstateDocumentType } from '../models/document-type.model';
 import { Estate } from '../models/Estate.model';
+import { ProfileService } from '../profile.service';
 import { UploadFileService } from '../upload-file.service';
 
 @Component({
@@ -17,13 +19,16 @@ export class UploadFileComponent implements OnInit {
 
   @Input() selectedDocType: EstateDocumentType = new (EstateDocumentType);
 
-  constructor(private httpClient: HttpClient, private uploadService: UploadFileService) { }
+  @Input()
+  fileCategory!: string;
 
- 
+  constructor(private httpClient: HttpClient, private uploadService: UploadFileService, private estateService: EstateService, private profileService: ProfileService) { }
+
+
   files: any[] = [];
 
   ngOnInit(): void {
-   
+
   }
 
   UploadFilesToServer() {
@@ -35,8 +40,10 @@ export class UploadFileComponent implements OnInit {
       const formData = new FormData();
       formData.append(file.type, file, file.name);
       formData.append("DocumentTypeId", this.selectedDocType.id);
-      formData.append("EstateId", "7000");
-      formData.append("profileId", "6150");
+      formData.append("EstateId", this.estateService.selectedEstate.Id);
+      formData.append("profileId", this.profileService.currentProfile.id.toString());
+      formData.append("fileCategory" , this.fileCategory);
+      
       console.log(formData);
       this.dummyHelperFunction(index, formData)
       index = index + 1;

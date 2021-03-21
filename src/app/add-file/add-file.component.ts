@@ -13,7 +13,7 @@ export class AddFileComponent implements OnInit {
   docTypes: EstateDocumentType[] = [];
   selectedDocType: EstateDocumentType = new EstateDocumentType;
 
-  jlpDocType: EstateDocumentType = {id: "10", description: "dokumentAA", helpText: "hjælp"}
+  fileCategory : string = "document";
 
   constructor(private httpClient: HttpClient, private uploadService: UploadFileService) { }
 

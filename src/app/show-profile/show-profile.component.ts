@@ -25,7 +25,6 @@ export class ShowProfileComponent implements OnInit {
     let myObserverable = this._profileService.getMyProfile();
 
     let myObserver = {
-
       next: (x: any) => {
         this.viewModel.email = x.email;
         this.viewModel.id = x.id;
@@ -37,6 +36,8 @@ export class ShowProfileComponent implements OnInit {
         this.viewModel.phone = x.phone;
         this.viewModel.createdDate = x.createdDate;
         this.viewModel.modifiedDate = x.modifiedDate;
+
+        this._profileService.currentProfile = this.viewModel;
 
         this.estateService.getEstateByProfile(this.viewModel).subscribe((x: any[]) => {
           x.forEach((element: any) => {
