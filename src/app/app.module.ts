@@ -29,6 +29,7 @@ import { AddFileComponent } from './add-file/add-file.component';
 import { EstateImgageCarouselComponent } from './estate-imgage-carousel/estate-imgage-carousel.component';
 import { AddImageComponent } from './add-image/add-image.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { EditEstateComponent } from './edit-estate/edit-estate.component';
 
 
 
@@ -45,7 +46,9 @@ const appRoutes : Routes = [
 {path: 'logout', component : LogoutComponent},
 {path: 'upload', component : UploadFileComponent},
 {path: 'add-file', component : AddFileComponent},
-{path: 'add-image', component : AddImageComponent}
+{path: 'add-image', component : AddImageComponent},
+{path: 'editestate', component : EditEstateComponent}
+
 ];
 
 @NgModule({
@@ -69,7 +72,8 @@ const appRoutes : Routes = [
     ShowImageComponent,
     AddFileComponent,
     EstateImgageCarouselComponent,
-    AddImageComponent,    
+    AddImageComponent,
+    EditEstateComponent,    
   ],
   imports: [
     BrowserModule,

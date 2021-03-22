@@ -1,0 +1,103 @@
+<div class="container">
+    <form #estateForm="ngForm" (ngSubmit)="saveEstate()">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Nyt salg af {{currentProfile.fullName}}</h3>
+                
+                <div>{{estate.Id}}</div>
+            </div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="estateType">Hustype</label>
+                            <input id="estateType" type="text" class="form-control" name="estateType" [(ngModel)]="estate.EstateType">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="price">Pris</label>
+                            <input id="price" type="text" class="form-control" name="price" [(ngModel)]="estate.Price">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="address1">Adresselinje 1</label>
+                            <input id="address1" type="text" class="form-control" name="address1" [(ngModel)]="estate.Address1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="address2">Adresselinje 2</label>
+                            <input id="address2" type="text" class="form-control" name="address2" [(ngModel)]="estate.Address2">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="zip">Postnummer</label>
+                            <input id="zip" type="text" class="form-control" name="zip" [(ngModel)]="estate.Zip">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="city">By</label>
+                            <input id="city" type="text" class="form-control" name="city" [(ngModel)]="estate.City">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="areal">Boliareal</label>
+                            <input id="areal" type="text" class="form-control" name="areal" [(ngModel)]="estate.Areal">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="vaegtetareal">Vægtet areal</label>
+                            <input id="vaegtetareal" type="text" class="form-control" name="vaegtetareal" [(ngModel)]="estate.VaegtetAreal">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="grundareal">Grundareal</label>
+                            <input id="grundareal" type="text" class="form-control" name="grundareal" [(ngModel)]="estate.GrundAreal">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="ejerudgiftPrMd">Ejerudgift pr. md.</label>
+                            <input id="ejerudgiftPrMd" type="text" class="form-control" name="ejerudgiftPrMd" [(ngModel)]="estate.EjerudgiftPrMd">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="prisPrM2">Pris pr. m2</label>
+                            <input id="prisPrM2" type="text" class="form-control" name="prisPrM2" [(ngModel)]="estate.PrisPrM2">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="liggetid">Liggetid</label>
+                            <input id="liggetid" type="text" class="form-control" name="liggetid" [(ngModel)]="estate.Liggetid">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-primary" [disabled]="estateForm.invalid" type="submit">Gem</button>
+            </div>
+        </div>
+    </form>
+</div>
+{{estateForm.value | json}}

@@ -6,7 +6,7 @@
       <ng-template ngbSlide *ngFor='let downloadImage of downloadImages; let i=index'>
         <img src='https://localhost:44303/app-images/{{downloadImage.uniqueFileName}}' class="width-100">
         <div class="carousel-caption">
-          <h3> [i] </h3>
+          <h3> i </h3>
         </div>
       </ng-template>
 
@@ -14,9 +14,9 @@
   </div>
 </div>
 
-<div class="text-center">
-  <button (click)="navigateToSlide('four')">Go to Slide Four</button>
-  <button (click)="getToPrev()">Prev</button>
-  <button (click)="goToNext()">Next</button>
+<div class="text-center"> 
+  <button (click)="getToPrev()">Forrige</button>
+  <button (click)="goToNext()">Næste</button>
   <button (click)="stopCarousel()">Pause</button>
+  <button (click)="addImage()">Tilføj billede</button> 
 </div>

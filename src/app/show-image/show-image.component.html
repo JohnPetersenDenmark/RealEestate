@@ -1,18 +1,10 @@
-<div class="row">
-    <div class="col-6">
-        <h1>Billeder</h1>
-        <div *ngFor="let downloadImage of downloadImages">
-            <div id="{{downloadImage.id}}" (click)="imageDoSomeThing($event)">
-                "{{downloadImage.uniqueFileName}}
-            </div>
-        </div>
-    </div>
-</div>
 
+
+
+<h2>Billeder</h2>
 <div class="row">
-    <div class="col-6">
+    <div class="col-12">
         <app-estate-imgage-carousel [downloadImages]="downloadImages"></app-estate-imgage-carousel>
     </div>
 </div>
 
-<button class="btn btn-outline-secondary btn-sm" type="button" (click)="addImage()">Tilføj billede</button>

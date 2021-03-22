@@ -40,5 +40,8 @@ export class ShowEstateComponent implements OnInit {
     });
   }
 
+  EditEstate(): void {    
+    this.router.navigate(['editestate']);
+  }
 
 }

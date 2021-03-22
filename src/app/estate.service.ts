@@ -33,6 +33,16 @@ export class EstateService {
     }
   }
 
+  updateEstate(estate: Estate): Observable<Estate> {
+    {
+      return this.httpClient.put<Estate>("https://localhost:44303/api/Estates", estate, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json"
+        })
+      })
+    }
+  }
+
   estateModelMappingForGet(backEndEstate: any): Estate {
     let frontEndEstate: Estate  = new Estate;
     

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -15,7 +16,7 @@ export class EstateImgageCarouselComponent implements OnInit {
   @ViewChild('ngcarousel', { static: true })
   ngCarousel!: NgbCarousel;
 
-  constructor() { }
+  constructor(private router: Router) { }
  
  public images = [
 
@@ -54,6 +55,10 @@ stopCarousel() {
 // Restart carousel
 restartCarousel() {
   this.ngCarousel.cycle();
+}
+
+addImage(): void {
+  this.router.navigate(["add-image"]);
 }
 
 }

@@ -10,6 +10,7 @@ import { DownloadFileService } from '../download-file.service';
 export class ShowImageComponent implements OnInit {
 
   @Input() downloadImages : any[] = [];
+  
   constructor(private downloadFileService: DownloadFileService, private router: Router) { }
 
   ngOnInit(): void {
@@ -19,7 +20,5 @@ export class ShowImageComponent implements OnInit {
 
   }
 
-  addImage(): void {
-    this.router.navigate(["add-image"]);
-  }
+ 
 }
