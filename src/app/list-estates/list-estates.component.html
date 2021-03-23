@@ -1,7 +1,54 @@
-<div *ngFor="let estate of viewModel">
-    <div>
-        {{estate.RegistrationNumber}}
-     
+<div class="container">
+    <div class="row">
+        <div *ngFor="let estate of viewModel">
+            <div>
+                <div class="estate-list estate-list--first" data-listingid="3606242">
+                    <div class="estate-list-item-header estate-list-item-header--initializing">
+                        <div class="estate-list-item-header-top">
+                            <div class="estate-list-item-header-title">
+
+                                <a href="/da/annoncer/3606242/Domaine-Leflaive-PulignyMontrachet-Clavoillon-2018">
+                                   Montrachet Clavoillon 2018
+                                </a>
+                            </div>
+                            <div class="estate-list-item-header-category">
+                                {{estate.EstateType}}                         
+                            </div>
+                        </div>
+                        <div class="estate-list-item-header-bottom">
+                            <div class="estate-list-item-description">
+                                {{estate.Address1}},  {{estate.Zip}} {{estate.City}}
+                            </div>
+                            <div class="estate-list-item-description">
+                                {{estate.Areal}},  {{estate.VaegtetAreal}} {{estate.GrundAreal}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="estate-list-items">
+
+                        <div class="estate-list-item" title="4. april 2021 21:00" >
+                         estate list item
+                        </div>
+                       
+                    </div>
+
+                    <div class="estate-list-item-bottom flex flex--padded">
+                        <div class="flex__minimum">
+                            <div class="estate-list-item-image"                           
+                                style="background-image: url(https://localhost:44303/app-images/{{estate.ThumbNailFilePathAndName}})">                               
+                            </div>
+                        </div>
+                        <div class="flex__maximum text-align-right text-align-bottom">
+                            <div class="estate-list-item-price-title">
+                               Pris
+                            </div>   
+                            <div class="estate-list-item-price">
+                                {{estate.Price}}
+                             </div>                                                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-   
 </div>

@@ -32,6 +32,15 @@ export class ListEstatesComponent implements OnInit {
       estate.RegistrationNumber = element.registrationNumber;
       estate.BuyerIdentityUserIds = element.buyerIdentityUserIds;
       estate.OwnerIdentityUserIds =  element.ownerIdentityUserIds;
+      estate.Price =  element.price;
+      estate.Address1 =  element.address1;
+      estate.Zip =  element.zip;
+      estate.City =  element.city;
+      estate.VaegtetAreal =  element.vaegtetAreal;
+      estate.Areal =  element.areal; 
+      estate.GrundAreal =  element.grundAreal;
+      estate.ThumbNailFilePathAndName = element.thumbNailFilePathAndName;
+      
       estate.CreatedDate = element.createdDate;
       estate.ModifiedDate = element.modifiedDate;
       this.viewModel.push(estate);

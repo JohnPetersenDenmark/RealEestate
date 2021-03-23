@@ -15,6 +15,7 @@ export class Estate {
     RegistrationNumber: string = "";
     BuyerIdentityUserIds: string = "";
     OwnerIdentityUserIds: string = "";
-    CreatedDate: string = "";
+    CreatedDate: string = ""; 
     ModifiedDate: string = "";
+    ThumbNailFilePathAndName: string = "";
 }
