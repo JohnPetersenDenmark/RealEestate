@@ -71,16 +71,41 @@
             {{selectedEstate.Liggetid}}
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-2">
+            Antal værelser
+        </div>
+        <div class="col-3">
+            {{selectedEstate.NoOfRooms}}
+        </div>
+        <div class="col-2">
+            Byggeår
+        </div>
+        <div class="col-3">
+            {{selectedEstate.BuildedYear}}
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-2">
             <button class="btn btn-primary" type="button" (click)="EditEstate()">Rediger</button>
         </div>
     </div>
-
-
+<br>
+<br>
+    <div class="row">
+        <div class="col-6">
+            <app-show-image [downloadImages]="downloadImages"></app-show-image>
+        </div>
+        <div class="col-6">
+            <app-show-file [downloadFiles]="downloadFiles"></app-show-file>
+        </div>
+    </div>
    
-    <app-show-image [downloadImages]="downloadImages"></app-show-image>
-    <app-show-file [downloadFiles]="downloadFiles"></app-show-file>
+    
+   
 
 
 </div>

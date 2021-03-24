@@ -91,7 +91,20 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="ejerudgiftPrMd">Antal værelser</label>
+                            <input id="ejerudgiftPrMd" type="text" class="form-control" name="ejerudgiftPrMd" [(ngModel)]="estate.NoOfRooms">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="prisPrM2">Byggeår</label>
+                            <input id="prisPrM2" type="text" class="form-control" name="prisPrM2" [(ngModel)]="estate.BuildedYear">
+                        </div>
+                    </div>                   
+                </div>
 
             </div>
             <div class="panel-footer">
@@ -100,4 +113,3 @@
         </div>
     </form>
 </div>
-{{estateForm.value | json}}

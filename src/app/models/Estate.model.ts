@@ -18,4 +18,6 @@ export class Estate {
     CreatedDate: string = ""; 
     ModifiedDate: string = "";
     ThumbNailFilePathAndName: string = "";
+    NoOfRooms: string = "";
+    BuildedYear: string = "";
 }

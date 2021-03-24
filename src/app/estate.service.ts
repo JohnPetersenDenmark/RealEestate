@@ -60,6 +60,8 @@ export class EstateService {
     frontEndEstate.EjerudgiftPrMd = backEndEstate.ejerudgiftPrMd;
     frontEndEstate.PrisPrM2 = backEndEstate.prisPrM2;
     frontEndEstate.Liggetid = backEndEstate.liggetid;
+    frontEndEstate.NoOfRooms = backEndEstate.noOfRooms;
+    frontEndEstate.BuildedYear = backEndEstate.buildedYear;
     frontEndEstate.RegistrationNumber = backEndEstate.registrationNumber;
     frontEndEstate.BuyerIdentityUserIds = backEndEstate.buyerIdentityUserIds;
     frontEndEstate.OwnerIdentityUserIds = backEndEstate.ownerIdentityUserIds;

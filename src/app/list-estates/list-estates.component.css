@@ -23,6 +23,49 @@
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+.estate-list-header-table-div {
+    margin: 0 0 5px;
+    padding: 0px 16px;
+}
+
+.estate-list-header-table {
+   width : 100%;
+    }
+
+
+
+.estate-list-item-header-areals{
+    color: #000000;
+    font-size: 12px;
+   text-align: right;;
+    letter-spacing: 1px;
+  
+}
+
+.estate-list-item-header-areals-label{
+    color: #8696A4;
+    font-size: 12px;
+    font-weight: bold;  
+    letter-spacing: 1px;
+    width : 50%;
+}
+
+.estate-list-item-header-price-label{
+    color: #8696A4;
+    font-size: 12px;
+    font-weight: bold;  
+    letter-spacing: 1px;
+    width : 50%;
+   
+}
+.estate-list-item-header-price{
+    color: #000000;
+    font-size: 12px;
+   text-align: right;
+    letter-spacing: 1px;
+   
+  
+}
 
 .estate-list-item-header-bottom {
     flex: 1;
@@ -39,13 +82,12 @@
 }
 
 .estate-list-item-image {
-    width: 151px;
-    height: 200px;
+    width: 200px;
+    height: 150px;
     border-radius: 4px;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
-    margin-right: 10px;
+    background-size: cover;       
 }
 
 @media (min-width: 375px) {
@@ -113,7 +155,7 @@
 
     .flex {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
     }
     
@@ -127,6 +169,7 @@
     
     .flex__minimum {
         flex: 0 0 auto;
+        padding: 15px ;
     }
     
     .text-align-right {

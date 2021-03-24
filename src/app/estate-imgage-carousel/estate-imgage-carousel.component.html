@@ -1,22 +1,21 @@
-<div class="container-fluid">
-  <div class="row">
+
+  
     <ngb-carousel #ngcarousel [showNavigationArrows]="false" [showNavigationIndicators]="true" [interval]="3000"
       [keyboard]="true" [pauseOnHover]="true" [wrap]="true" [activeId]="'secondSlide'">
 
       <ng-template ngbSlide *ngFor='let downloadImage of downloadImages; let i=index'>
-        <img src='https://localhost:44303/app-images/{{downloadImage.uniqueFileName}}' class="width-100">
+        <img src='https://localhost:44303/app-images/{{downloadImage.uniqueFileName}}'>
         <div class="carousel-caption">
           <h3> i </h3>
         </div>
       </ng-template>
 
     </ngb-carousel>
-  </div>
-</div>
+
 
 <div class="text-center"> 
-  <button (click)="getToPrev()">Forrige</button>
-  <button (click)="goToNext()">Næste</button>
-  <button (click)="stopCarousel()">Pause</button>
-  <button (click)="addImage()">Tilføj billede</button> 
+  <button class="btn btn-primary" type="button" (click)="getToPrev()">Forrige</button>
+  <button class="btn btn-primary" type="button" (click)="goToNext()">Næste</button>
+  <button class="btn btn-primary" type="button" (click)="stopCarousel()">Pause</button>
+  <button class="btn btn-primary" type="button"(click)="addImage()">Tilføj billede</button> 
 </div>

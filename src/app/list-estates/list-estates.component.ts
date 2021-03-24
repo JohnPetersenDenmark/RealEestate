@@ -40,6 +40,8 @@ export class ListEstatesComponent implements OnInit {
       estate.Areal =  element.areal; 
       estate.GrundAreal =  element.grundAreal;
       estate.ThumbNailFilePathAndName = element.thumbNailFilePathAndName;
+      estate.NoOfRooms = element.noOfRooms;
+      estate.BuildedYear = element.buildedYear;
       
       estate.CreatedDate = element.createdDate;
       estate.ModifiedDate = element.modifiedDate;

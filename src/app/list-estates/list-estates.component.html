@@ -2,50 +2,52 @@
     <div class="row">
         <div *ngFor="let estate of viewModel">
             <div>
-                <div class="estate-list estate-list--first" data-listingid="3606242">
+                <div class="estate-list estate-list--first">
                     <div class="estate-list-item-header estate-list-item-header--initializing">
                         <div class="estate-list-item-header-top">
                             <div class="estate-list-item-header-title">
 
                                 <a href="/da/annoncer/3606242/Domaine-Leflaive-PulignyMontrachet-Clavoillon-2018">
-                                   Montrachet Clavoillon 2018
+                                    Montrachet Clavoillon 2018
                                 </a>
                             </div>
                             <div class="estate-list-item-header-category">
-                                {{estate.EstateType}}                         
+                                {{estate.EstateType}}
                             </div>
-                        </div>
-                        <div class="estate-list-item-header-bottom">
-                            <div class="estate-list-item-description">
-                                {{estate.Address1}},  {{estate.Zip}} {{estate.City}}
+                            <div class="estate-list-item-header-category">
+                                {{estate.Address1}}, {{estate.Zip}} {{estate.City}}
                             </div>
-                            <div class="estate-list-item-description">
-                                {{estate.Areal}},  {{estate.VaegtetAreal}} {{estate.GrundAreal}}
+                            <div  class="estate-list-header-table-div">
+                                <table class="estate-list-header-table">
+                                    <tr>
+                                        <td class="estate-list-item-header-areals-label">Areal</td>
+                                        <td class="estate-list-item-header-areals"> {{estate.Areal}} m2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="estate-list-item-header-areals-label">Vægtet Areal</td>
+                                        <td class="estate-list-item-header-areals"> {{estate.VaegtetAreal}} m2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="estate-list-item-header-areals-label">Grundareal</td>
+                                        <td class="estate-list-item-header-areals"> {{estate.GrundAreal}} m2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="estate-list-item-header-price-label">Pris</td>
+                                        <td class="estate-list-item-header-price">  {{estate.Price}} kr.</td>
+                                    </tr>
+                                </table>
                             </div>
-                        </div>
-                    </div>
-                    <div class="estate-list-items">
 
-                        <div class="estate-list-item" title="4. april 2021 21:00" >
-                         estate list item
-                        </div>
-                       
+                        </div>                       
                     </div>
-
-                    <div class="estate-list-item-bottom flex flex--padded">
+                   
+                    <div class="estate-list-item-bottom flex">
                         <div class="flex__minimum">
-                            <div class="estate-list-item-image"                           
-                                style="background-image: url(https://localhost:44303/app-images/{{estate.ThumbNailFilePathAndName}})">                               
+                            <div class="estate-list-item-image"
+                                style="background-image: url(https://localhost:44303/app-images/{{estate.ThumbNailFilePathAndName}})">
                             </div>
                         </div>
-                        <div class="flex__maximum text-align-right text-align-bottom">
-                            <div class="estate-list-item-price-title">
-                               Pris
-                            </div>   
-                            <div class="estate-list-item-price">
-                                {{estate.Price}}
-                             </div>                                                      
-                        </div>
+
                     </div>
                 </div>
             </div>
