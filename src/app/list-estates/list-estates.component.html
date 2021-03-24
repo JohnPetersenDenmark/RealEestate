@@ -6,10 +6,10 @@
                     <div class="estate-list-item-header estate-list-item-header--initializing">
                         <div class="estate-list-item-header-top">
                             <div class="estate-list-item-header-title">
-
-                                <a href="/da/annoncer/3606242/Domaine-Leflaive-PulignyMontrachet-Clavoillon-2018">
-                                    Montrachet Clavoillon 2018
-                                </a>
+                                
+                                <div class="estate-list-item-header-title show-hand" (click)="goReadEstate(estate.Id)">
+                                Se bolig
+                                </div>                           
                             </div>
                             <div class="estate-list-item-header-category">
                                 {{estate.EstateType}}

@@ -79,7 +79,7 @@
         <div class="col-6">
             <h1>Mine salg</h1>
             <div *ngFor="let estate of estates">
-                <div id="{{estate.Id}}" (click)="goReadEstate($event)">
+                <div class="show-hand" id="{{estate.Id}}" (click)="goReadEstate($event)">
                     {{estate.Address1}} {{estate.Zip}} {{estate.City}}          
                 </div>       
             </div>

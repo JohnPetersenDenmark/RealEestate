@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{selectedEstate.Address1}}</h3>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Adresse
+        </div>
+        <div class="col-3">
+            {{selectedEstate.Address1}}
+        </div>
+        <div class="col-2">
+            Postnummer
+        </div>
+        <div class="col-3">
+            {{selectedEstate.Zip}}
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-2">
+            By
+        </div>
+        <div class="col-3">
+            {{selectedEstate.City}}
+        </div>        
+    </div>
+
+    
+    <div class="row">
+        <div class="col-2">
+            Pris
+        </div>
+        <div class="col-3">
+            {{selectedEstate.Price}}
+        </div>
+        <div class="col-2">
+            Pris pr. m2
+        </div>
+        <div class="col-3">
+            {{selectedEstate.PrisPrM2}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            Areal
+        </div>
+        <div class="col-3">
+            {{selectedEstate.Areal}}
+        </div>
+        <div class="col-2">
+            Vægtet areal
+        </div>
+        <div class="col-3">
+            {{selectedEstate.VaegtetAreal}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            Grundareal
+        </div>
+        <div class="col-3">
+            {{selectedEstate.GrundAreal}}
+        </div>
+        <div class="col-2">
+            Liggetid
+        </div>
+        <div class="col-3">
+            {{selectedEstate.Liggetid}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            Antal værelser
+        </div>
+        <div class="col-3">
+            {{selectedEstate.NoOfRooms}}
+        </div>
+        <div class="col-2">
+            Byggeår
+        </div>
+        <div class="col-3">
+            {{selectedEstate.BuildedYear}}
+        </div>
+    </div>
+
+
+<br>
+<br>
+    <div class="row">
+        <div class="col-6">
+            <app-show-image [downloadImages]="downloadImages"></app-show-image>
+        </div>      
+    </div>
+   
+    
+   
+
+
+</div>

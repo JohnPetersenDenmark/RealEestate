@@ -1,0 +1,15 @@
+.btn.btn-primary {
+    height: 40px;
+    
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.5;
+    color: #000000;
+    border-color: #000000;
+    margin-right: 10px;
+    background-color: transparent;
+  }
+
+  .show-hand:hover {
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ import { Estate } from '../models/Estate.model';
 import { Observable} from 'rxjs';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ListEstatesComponent implements OnInit {
 
   viewModel: Estate[] = [];
   
-  constructor(private _estateService: EstateService) { }
+  constructor(private _estateService: EstateService, private router: Router) { }
 
 
   ngOnInit() {
@@ -57,4 +58,14 @@ export class ListEstatesComponent implements OnInit {
 
   }
 
+  goReadEstate(estateId : string) {
+
+    console.log("klikket på" );
+    let selectedEstate = this.viewModel.find(x => x.Id === estateId);
+    this._estateService.selectedEstate = selectedEstate;
+    this.router.navigate(["publicestate"]);
+
+     console.log("klikket på" + estateId);
+
+  }
 }

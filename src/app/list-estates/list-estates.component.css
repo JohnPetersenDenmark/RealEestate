@@ -141,7 +141,7 @@
     margin-bottom : 15px;
 }
 
-.estate-list-item-header-title a {
+.estate-list-item-header-title div {
     color: #282F36;
     font-size: 16px;
     font-weight: bold;
@@ -149,7 +149,7 @@
     margin: 16px 16px 0;
 }
 
-    .estate-list-item-header-title a:hover {
+    .estate-list-item-header-title div:hover {
         text-decoration: underline;
     }
 
