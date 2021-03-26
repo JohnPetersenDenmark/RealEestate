@@ -190,5 +190,17 @@
         font-weight: 900;
     }
     
+    .my-pagination /deep/ .ngx-pagination .current {
+        background: rgb(94, 94, 94) ;
+        border-radius: 4px ;
+        padding-left: 9px ;
+        padding-right: 9px ;
+      }
 
-   
+      .my-pagination /deep/ .ngx-pagination a:hover, .ngx-pagination button:hover  {
+        background: #999595 ;
+        border-radius: 3px ;
+      
+    }
+
+     

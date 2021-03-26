@@ -16,26 +16,27 @@ export class ListEstatesComponent implements OnInit {
 
   viewModel: Estate[] = [];
 
-  constructor(private _estateService: EstateService, private router: Router) { }
-  public pageSize: number = 1;
+  public pageSize: number = 2;
   public pageNumber: number = 1;
   public Count!: number;
 
+  constructor(private _estateService: EstateService, private router: Router) {
+   
+   }
+ 
+
   ngOnInit() {
-    this._estateService.getPagedEstateList(this.pageSize, this.pageNumber).subscribe(result => {
-      this.mapEstate(result.items);
-      this.pageNumber = result.pageIndex;
-      this.Count = result.count; 
+    this._estateService.getEstateList().subscribe(result => {
+      this.mapEstate(result);    
+      this.Count = result.length; 
     }, error => console.error(error));
 
+    
   }
 
   public onPageChange = (pageNumber: any) => {
-    this._estateService.getPagedEstateList(this.pageSize, pageNumber).subscribe(result => {
-      this.mapEstate(result.items);
-      this.pageNumber = result.pageIndex;
-      this.Count = result.count; 
-    }, error => console.error(error));
+    this.pageNumber = pageNumber;
+   
 }
   goReadEstate(estateId: string) {
 
