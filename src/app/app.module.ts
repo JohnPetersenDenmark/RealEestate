@@ -31,6 +31,7 @@ import { AddImageComponent } from './add-image/add-image.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditEstateComponent } from './edit-estate/edit-estate.component';
 import { ShowPublicEstateComponent } from './show-public-estate/show-public-estate.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -82,7 +83,8 @@ const appRoutes : Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
    
   ],
   providers: [ProfileService, EstateService, { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],

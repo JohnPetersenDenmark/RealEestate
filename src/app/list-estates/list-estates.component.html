@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div *ngFor="let estate of viewModel">
+        <div *ngFor="let estate of viewModel | paginate: { itemsPerPage: pageSize, currentPage: pageNumber, totalItems:Count }">
             <div>
                 <div class="estate-list estate-list--first">
                     <div class="estate-list-item-header estate-list-item-header--initializing">
@@ -52,5 +52,9 @@
                 </div>
             </div>
         </div>
+     
     </div>
+   
 </div>
+
+<pagination-controls (pageChange)="onPageChange($event)" previousLabel="Forrige" nextLabel="Næste"></pagination-controls>

@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Estate } from './models/Estate.model';
 import { Profile } from './models/profile.model';
+import { PageResult } from './models/PageResult';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class EstateService {
 
   getEstateList(): Observable<any[]> {
     return this.httpClient.get<any[]>("https://localhost:44303/api/Estates")
+  }
+
+  getPagedEstateList(pageSize : number, pageNumber : number): Observable<PageResult<any[]>> {
+    return this.httpClient.get<PageResult<any[]>>("https://localhost:44303/api/Estates?page=" + pageNumber + "&pageSize=" + pageSize)
   }
 
   getEstateByProfile(profile: Profile): Observable<any[]> {
