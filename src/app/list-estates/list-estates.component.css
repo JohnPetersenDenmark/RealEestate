@@ -202,5 +202,20 @@
         border-radius: 3px ;
       
     }
+    .show-hand:hover {
+        cursor: pointer;
+    }
+    
+.custom-slider ::ng-deep .ngx-slider .ngx-slider-pointer {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        top: -7px;
+        background-color: #58595a;
+        z-index: 3;
+        border-radius: 8px;
+    }
 
-     
+    .search-hit {
+        color : red;
+    }

@@ -32,6 +32,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditEstateComponent } from './edit-estate/edit-estate.component';
 import { ShowPublicEstateComponent } from './show-public-estate/show-public-estate.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { NgxTypeaheadModule } from "ngx-typeahead";
 
 
 
@@ -76,7 +78,7 @@ const appRoutes : Routes = [
     EstateImgageCarouselComponent,
     AddImageComponent,
     EditEstateComponent,
-    ShowPublicEstateComponent    
+    ShowPublicEstateComponent,  
   ],
   imports: [
     BrowserModule,
@@ -84,8 +86,9 @@ const appRoutes : Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     NgbModule,
-    NgxPaginationModule
-   
+    NgxPaginationModule,
+    NgxSliderModule,
+    NgxTypeaheadModule
   ],
   providers: [ProfileService, EstateService, { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   bootstrap: [AppComponent]

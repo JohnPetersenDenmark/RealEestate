@@ -1,15 +1,44 @@
 <div class="container">
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="tast noget" style="width:300px"
+            [(ngModel)]="searchString" />
+        <div *ngFor="let searchTerm of searchTerms">
+            <div class="show-hand" (click)="setSearchTerm(searchTerm)">
+                <div>{{searchTerm.FoundInCategory}}</div>
+                <span>{{searchTerm.TextBeforeHit}}</span>
+                <span class="search-hit">{{searchTerm.TextHit}}</span>
+                <span>{{searchTerm.TextAfterHit}}</span>                              
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Søg ejendom" style="width:300px"
+            [(ngModel)]="searchTerm" />
+    </div>
+
+
+    <div class="custom-slider">
+        <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+    </div>
+
+
+
     <div class="row">
-        <div *ngFor="let estate of viewModel | paginate: { itemsPerPage: pageSize, currentPage: pageNumber, totalItems:Count }">
+        <div
+            *ngFor="let estate of filteredEstates | paginate: { itemsPerPage: pageSize, currentPage: pageNumber, totalItems:Count }">
             <div>
                 <div class="estate-list estate-list--first">
                     <div class="estate-list-item-header estate-list-item-header--initializing">
                         <div class="estate-list-item-header-top">
                             <div class="estate-list-item-header-title">
-                                
+
                                 <div class="estate-list-item-header-title show-hand" (click)="goReadEstate(estate.Id)">
-                                Se bolig
-                                </div>                           
+                                    Se bolig
+                                </div>
                             </div>
                             <div class="estate-list-item-header-category">
                                 {{estate.EstateType}}
@@ -17,7 +46,7 @@
                             <div class="estate-list-item-header-category">
                                 {{estate.Address1}}, {{estate.Zip}} {{estate.City}}
                             </div>
-                            <div  class="estate-list-header-table-div">
+                            <div class="estate-list-header-table-div">
                                 <table class="estate-list-header-table">
                                     <tr>
                                         <td class="estate-list-item-header-areals-label">Areal</td>
@@ -33,14 +62,14 @@
                                     </tr>
                                     <tr>
                                         <td class="estate-list-item-header-price-label">Pris</td>
-                                        <td class="estate-list-item-header-price">  {{estate.Price}} kr.</td>
+                                        <td class="estate-list-item-header-price"> {{estate.Price}} kr.</td>
                                     </tr>
                                 </table>
                             </div>
 
-                        </div>                       
+                        </div>
                     </div>
-                   
+
                     <div class="estate-list-item-bottom flex">
                         <div class="flex__minimum">
                             <div class="estate-list-item-image"
@@ -52,9 +81,10 @@
                 </div>
             </div>
         </div>
-     
-    </div> 
-   
+
+    </div>
+
 </div>
 
-<pagination-controls (pageChange)="onPageChange($event)" class="my-pagination" previousLabel="Forrige" nextLabel="Næste"></pagination-controls>
+<pagination-controls (pageChange)="onPageChange($event)" class="my-pagination" previousLabel="Forrige"
+    nextLabel="Næste"></pagination-controls>
