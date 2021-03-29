@@ -1,24 +1,28 @@
 <div class="container">
 
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="tast noget" style="width:300px"
-            [(ngModel)]="searchString" />
-        <div *ngFor="let searchTerm of searchTerms">
-            <div class="show-hand" (click)="setSearchTerm(searchTerm)">
-                <div>{{searchTerm.FoundInCategory}}</div>
+    
+        <div style="float: left">
+            <input type="text" class="form-control" placeholder="tast noget" style="width:300px"
+                [(ngModel)]="searchString" />
+        </div>
+        <div style="float: left">
+            <button class="btn btn-primary" type="button" (click)="filterEstates()">Søg</button>
+        </div>
+       
+
+        <div *ngFor="let searchTerm of searchTerms" class="dummy">
+            <div *ngIf="searchTerm.IsDivider" class="search-hit-divider">
+                {{searchTerm.FoundInCategory}}:
+            </div>
+            <div *ngIf="!searchTerm.IsDivider" class="show-hand search-hit-block" (click)="setSearchTerm(searchTerm)">
                 <span>{{searchTerm.TextBeforeHit}}</span>
                 <span class="search-hit">{{searchTerm.TextHit}}</span>
-                <span>{{searchTerm.TextAfterHit}}</span>                              
+                <span>{{searchTerm.TextAfterHit}}</span>
             </div>
         </div>
-    </div>
 
+    
 
-
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Søg ejendom" style="width:300px"
-            [(ngModel)]="searchTerm" />
-    </div>
 
 
     <div class="custom-slider">

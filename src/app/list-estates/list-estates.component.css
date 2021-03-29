@@ -216,6 +216,56 @@
         border-radius: 8px;
     }
 
+    .btn.btn-primary {
+        height: calc(1.5em + .75rem + 2px);
+        border : 1px solid #ced4da;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 1.5;
+        color: #000000;
+       
+        margin-right: 10px;
+        background-color: transparent;
+      }
+
     .search-hit {
         color : red;
     }
+
+    .search-hit-divider {
+        position: relative;
+        display: block;
+        width: 300px;
+        min-height: 12px;
+        font-size: 14px;
+        line-height : 12px;
+        font-weight: 400;
+        text-align: left;
+        color: #5a626b;
+        background: #46424217;
+        padding: 5px 5px 5px 5px;    
+    }
+  
+    .search-hit-block {
+         
+        position: relative;
+        display: block;
+        width: 300px;
+        min-height: 12px;
+        font-size: 14px;
+        line-height : 12px;
+        font-weight: 500;
+        text-align: left;
+        color: #5a626b;
+        background: #46424217;
+        padding: 5px 5px 5px 50px;    
+    }
+    .dummy {
+       
+        clear : left;
+    }
+    
+
+    
+
+   

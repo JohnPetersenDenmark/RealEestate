@@ -3,4 +3,5 @@ export class EstateSearchHit {
     TextBeforeHit: string = "";
     TextHit: string = "";
     TextAfterHit : string = "";
+    IsDivider : boolean = false;
 }
