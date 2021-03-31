@@ -206,15 +206,7 @@
         cursor: pointer;
     }
     
-.custom-slider ::ng-deep .ngx-slider .ngx-slider-pointer {
-        cursor: pointer;
-        width: 20px;
-        height: 20px;
-        top: -7px;
-        background-color: #58595a;
-        z-index: 3;
-        border-radius: 8px;
-    }
+
 
     .btn.btn-primary {
         height: calc(1.5em + .75rem + 2px);
@@ -246,7 +238,7 @@
         padding: 5px 5px 5px 5px;    
     }
   
-    .search-hit-block {
+    .search-hit-block { 
          
         position: relative;
         display: block;
@@ -264,8 +256,58 @@
        
         clear : left;
     }
-    
 
-    
+    ::ng-deep .custom-slider .ngx-slider {
+        display: inline-block;
+        position: relative;
+        height: 4px;
+        width: 300px;
+        margin: 35px 0 15px;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: pan-y;
+    }
 
-   
+    ::ng-deep .custom-slider .ngx-slider-span.ngx-slider-pointer.ngx-slider-pointer-min {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);                  
+    }
+
+    ::ng-deep .custom-slider .ngx-slider-span.ngx-slider-pointer.ngx-slider-pointer-max {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);                  
+    }
+
+    ::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer {       
+       
+        border: solid #0db9f0;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding-left: 3px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        background-color: #ffffff;
+        width: 12px;
+        height: 12px;
+        top: -14px;
+        border-radius: 0px;
+    }
+    
+    ::ng-deep .custom-slider .ngx-slider .ngx-slider-bar {
+        background: #0db9f0;
+        height: 2px;
+      }
+
+      ::ng-deep .custom-slider .ngx-slider.animate .ngx-slider-pointer {
+        transition: none;
+    }
+    
+    ::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer:after {
+        display: none;
+      }
+    
+     

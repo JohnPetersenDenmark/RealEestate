@@ -34,6 +34,7 @@ import { ShowPublicEstateComponent } from './show-public-estate/show-public-esta
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgxTypeaheadModule } from "ngx-typeahead";
+import { SlidersComponent } from './sliders/sliders.component';
 
 
 
@@ -52,7 +53,8 @@ const appRoutes : Routes = [
 {path: 'add-file', component : AddFileComponent},
 {path: 'add-image', component : AddImageComponent},
 {path: 'editestate', component : EditEstateComponent},
-{path: 'publicestate', component : ShowPublicEstateComponent}
+{path: 'publicestate', component : ShowPublicEstateComponent},
+{path: 'slider', component : SlidersComponent}
 ];
 
 @NgModule({
@@ -78,7 +80,8 @@ const appRoutes : Routes = [
     EstateImgageCarouselComponent,
     AddImageComponent,
     EditEstateComponent,
-    ShowPublicEstateComponent,  
+    ShowPublicEstateComponent,
+    SlidersComponent,  
   ],
   imports: [
     BrowserModule,

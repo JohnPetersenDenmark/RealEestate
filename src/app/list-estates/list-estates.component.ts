@@ -29,11 +29,16 @@ export class ListEstatesComponent implements OnInit {
   public pageNumber: number = 1;
   public Count!: number;
 
-  value: number = 1;
+  minValue: number = 1;
+  maxValue: number = 8;
   options: Options = {
     floor: 1,
-    ceil: 8
+    ceil: 8,
+    step: 1,
+    showTicks: true
   };
+
+  
 
 
 
