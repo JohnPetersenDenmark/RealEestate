@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
@@ -8,18 +8,19 @@ import { Options } from '@angular-slider/ngx-slider';
 })
 export class SlidersComponent implements OnInit {
 
+  @Input()  value: number = 1;
+  @Input()  minValue: number = 1;
+  @Input()  maxValue: number = 8;
+  @Input()  options: Options = {
+    
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  minValue: number = 1;
-  maxValue: number = 8;
-  options: Options = {
-    floor: 1,
-    ceil: 8,
-    step: 1,
-    showTicks: true
-  };
+ 
+ 
 
 }

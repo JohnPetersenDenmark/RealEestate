@@ -19,7 +19,7 @@
   $handleActiveColor: #451aff !default;
   $handleHoverColor: #fff !default;
   $labelTextColor: #55637d !default;
-  $handleBgColor: #0db9f0 !default;
+  $handleBgColor: rgb(66, 128, 243) !default;
   $handleInnerColor: #fff !default;
   $handleDisabledColor: #d8e0f3 !default;
   $limitLabelTextColor: $labelTextColor !default;
@@ -31,19 +31,19 @@
   
   $ticksColor: $barNormalColor !default;
   $selectedTicksColor: $barFillColor !default;
-  $ticksWidth: 10px !default;
-  $ticksHeight: 10px !default;
+  $ticksWidth: 5px !default;
+  $ticksHeight: 5px !default;
   $ticksValuePosition: -34px !default;
   $ticksLegendPosition: 24px !default;
   $ticksValuePositionOnVertical: 24px !default;
   $tickLegendMaxWidth: 50px !default;
   
-  $handleSize: 32px !default;
+  $handleSize: 10px !default;
   $handlePointerSize: 8px !default;
   $bubblePaddingVertical: 1px !default;
   $bubblePaddingHorizontal: 3px !default;
-  $labelFontSize: 16px !default;
-  $barDimension: 4px !default;
+  $labelFontSize: 10px !default;
+  $barDimension: 2px !default;
   
   $withLegendMargin: 40px !default;
   

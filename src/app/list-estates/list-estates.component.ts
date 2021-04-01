@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
-import { Options } from '@angular-slider/ngx-slider';
+import { Options, CustomStepDefinition, LabelType } from '@angular-slider/ngx-slider';
 import { EstateSearchHit } from '../models/search-hit.model';
 
 
@@ -29,12 +29,63 @@ export class ListEstatesComponent implements OnInit {
   public pageNumber: number = 1;
   public Count!: number;
 
-  minValue: number = 1;
-  maxValue: number = 8;
-  options: Options = {
+ 
+
+
+  showEstateTypeSlider: boolean = false;
+  estateTypes: string[]= ["500.00", "750.000","1.000.000", "1.250.000" , "1.500.000",
+    "1.750.000","2.000.000", "2.250.000" , "2.500.000"]
+  
+  estateTypeValue: number = this.estateTypeToIndex('Ejerlejlighed');
+  
+  estateTypeOptions: Options = {
+    stepsArray: this.estateTypes.map((estateType: string): CustomStepDefinition => {
+      return { value: this.estateTypeToIndex(estateType) };
+    }),
+    translate: (value: number, label: LabelType): string => {
+      return this.indexToEstateType(value);
+    },
+    showTicks: true,
+    showTicksValues: true
+  };
+
+  indexToEstateType(index: number): string {
+    return this.estateTypes[index];
+  }
+
+  estateTypeToIndex(letter: string): number {
+    return this.estateTypes.indexOf(letter);
+  }
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  sHowRoomSlider: boolean = false;
+  roomMinValue: number = 1;
+  roomMaxValue: number = 8;
+  roomOptions: Options = {
     floor: 1,
     ceil: 8,
     step: 1,
+    showTicks: true
+  };
+
+  sHowPriceSlider: boolean = false;
+  priceMinValue: number = 0;
+  priceMaxValue: number = 100;
+  priceOptions: Options = {
+    floor: 0,
+    ceil: 100,
+    step: 10,
     showTicks: true
   };
 
@@ -224,4 +275,36 @@ export class ListEstatesComponent implements OnInit {
       this.viewModel.push(estate);
     })
   }
+
+  ToogleSHowEstateTypeSlider() {
+    if (this.showEstateTypeSlider)
+    {
+      this.showEstateTypeSlider = false;
+    }
+    else{
+      this.showEstateTypeSlider = true;
+    }
+  }
+  
+  ToogleSHowRoomSlider() {
+    if (this.sHowRoomSlider)
+    {
+      this.sHowRoomSlider = false;
+    }
+    else{
+      this.sHowRoomSlider = true;
+    }
+  }
+
+  ToogleSHowPriceSlider
+  () {
+    if (this.sHowPriceSlider)
+    {
+      this.sHowPriceSlider = false;
+    }
+    else{
+      this.sHowPriceSlider = true;
+    }
+  }
+
 }

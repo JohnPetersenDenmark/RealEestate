@@ -21,15 +21,27 @@
             </div>
         </div>
 
-    
+        
+
+        <div style="clear : both">
+            <button class="filter-button" type="button" (click)="ToogleSHowEstateTypeSlider()">
+                Boligtype
+            </button>
+            <app-sliders *ngIf="showEstateTypeSlider" [value]="estateTypeValue" [options]="estateTypeOptions"  ></app-sliders>
 
 
+            <button class="filter-button" type="button" (click)="ToogleSHowRoomSlider()">
+                Værelser
+            </button>
+            <app-sliders *ngIf="sHowRoomSlider" [minValue]="roomMinValue" [maxValue]="roomMaxValue" [options]="roomOptions"></app-sliders>
 
-    <div class="custom-slider">
-        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
-    </div>
 
-
+            <button class="filter-button" type="button" (click)="ToogleSHowPriceSlider()">
+                Pris
+            </button>           
+            <app-sliders *ngIf="sHowPriceSlider" [minValue]="priceMinValue" [maxValue]="priceMaxValue" [options]="priceOptions"></app-sliders>    
+        </div>
+      
 
     <div class="row">
         <div
