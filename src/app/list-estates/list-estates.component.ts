@@ -23,14 +23,12 @@ export class ListEstatesComponent implements OnInit {
   searchTerms: EstateSearchHit[] = [];
   selectedSearchTerm = new EstateSearchHit();
 
-  
 
   public pageSize: number = 10;
   public pageNumber: number = 1;
   public Count!: number;
 
  
-
 
   showEstateTypeSlider: boolean = false;
   estateTypes: string[]= ["500.00", "750.000","1.000.000", "1.250.000" , "1.500.000",
@@ -70,7 +68,15 @@ export class ListEstatesComponent implements OnInit {
   
   
   sHowRoomSlider: boolean = false;
-  roomMinValue: number = 1;
+  _roomMinValue: number = 1;
+
+  set roomMinValue(val: number) {
+    this._roomMinValue = val;
+  }
+  get roomMinValue() : number {
+    return this._roomMinValue ;
+  }
+
   roomMaxValue: number = 8;
   roomOptions: Options = {
     floor: 1,

@@ -272,5 +272,14 @@
         cursor: pointer;
     }
 
+    .filter-dropdown-wrapper {
+        position: absolute;
+        z-index: 11;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 0 40px 65px rgba(0,0,0,.45);
+        border: 1px solid rgba(0,0,0,.05);
+        margin-top: 20px;
+    }
    
      

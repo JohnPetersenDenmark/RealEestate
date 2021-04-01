@@ -1,47 +1,41 @@
 <div class="container">
 
-    
-        <div style="float: left">
-            <input type="text" class="form-control" placeholder="tast noget" style="width:300px"
-                [(ngModel)]="searchString" />
+
+    <div style="float: left">
+        <input type="text" class="form-control" placeholder="tast noget" style="width:300px"
+            [(ngModel)]="searchString" />
+    </div>
+    <div style="float: left">
+        <button class="btn btn-primary" type="button" (click)="filterEstates()">Søg</button>
+    </div>
+
+
+    <div *ngFor="let searchTerm of searchTerms" class="dummy">
+        <div *ngIf="searchTerm.IsDivider" class="search-hit-divider">
+            {{searchTerm.FoundInCategory}}:
         </div>
-        <div style="float: left">
-            <button class="btn btn-primary" type="button" (click)="filterEstates()">Søg</button>
+        <div *ngIf="!searchTerm.IsDivider" class="show-hand search-hit-block" (click)="setSearchTerm(searchTerm)">
+            <span>{{searchTerm.TextBeforeHit}}</span>
+            <span class="search-hit">{{searchTerm.TextHit}}</span>
+            <span>{{searchTerm.TextAfterHit}}</span>
         </div>
-       
-
-        <div *ngFor="let searchTerm of searchTerms" class="dummy">
-            <div *ngIf="searchTerm.IsDivider" class="search-hit-divider">
-                {{searchTerm.FoundInCategory}}:
-            </div>
-            <div *ngIf="!searchTerm.IsDivider" class="show-hand search-hit-block" (click)="setSearchTerm(searchTerm)">
-                <span>{{searchTerm.TextBeforeHit}}</span>
-                <span class="search-hit">{{searchTerm.TextHit}}</span>
-                <span>{{searchTerm.TextAfterHit}}</span>
-            </div>
-        </div>
-
-        
-
-        <div style="clear : both">
-            <button class="filter-button" type="button" (click)="ToogleSHowEstateTypeSlider()">
-                Boligtype
-            </button>
-            <app-sliders *ngIf="showEstateTypeSlider" [value]="estateTypeValue" [options]="estateTypeOptions"  ></app-sliders>
+    </div>
 
 
-            <button class="filter-button" type="button" (click)="ToogleSHowRoomSlider()">
-                Værelser
-            </button>
-            <app-sliders *ngIf="sHowRoomSlider" [minValue]="roomMinValue" [maxValue]="roomMaxValue" [options]="roomOptions"></app-sliders>
+
+    <div style="clear : both">
+
+        <button class="filter-button" type="button" (click)="ToogleSHowRoomSlider()">
+            Værelser
+            {{roomMinValue}}
+        </button>
+
+        <app-sliders *ngIf="sHowRoomSlider" [(estateValue)]="roomMinValue" [(estateMaxValue)]="roomMaxValue" [estateOptions]="roomOptions">
+        </app-sliders>
 
 
-            <button class="filter-button" type="button" (click)="ToogleSHowPriceSlider()">
-                Pris
-            </button>           
-            <app-sliders *ngIf="sHowPriceSlider" [minValue]="priceMinValue" [maxValue]="priceMaxValue" [options]="priceOptions"></app-sliders>    
-        </div>
-      
+    </div>
+
 
     <div class="row">
         <div

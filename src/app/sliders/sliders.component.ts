@@ -1,26 +1,43 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, DoCheck, KeyValueDiffer, KeyValueDiffers } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
+
 
 @Component({
   selector: 'app-sliders',
   templateUrl: './sliders.component.html',
   styleUrls: ['./sliders.component.scss']
 })
-export class SlidersComponent implements OnInit {
+export class SlidersComponent   {
+ 
 
-  @Input()  value: number = 1;
-  @Input()  minValue: number = 1;
-  @Input()  maxValue: number = 8;
-  @Input()  options: Options = {
-    
-  };
+  @Input() estateValue!: number;
+  @Input() estateMaxValue!: number;
+  @Input() estateOptions!: Options;
 
-  constructor() { }
+  
+  @Output() estateValueChange = new EventEmitter<number>();
+  @Output() estateMaxValueChange = new EventEmitter<number>();
 
-  ngOnInit(): void {
-  }
+  
+  // lowValue!: number;
+  // highValue!: number;
+  // options!: Options;
 
  
+
+  
+
+  constructor() {
+  
+  }
+
+  ngOnInit(): void {
+ 
+    // this.lowValue = this.estateValue;
+    // this.highValue = this.estateMaxValue;
+    // this.options = this.estateOptions;
+  }
+  
  
 
 }
