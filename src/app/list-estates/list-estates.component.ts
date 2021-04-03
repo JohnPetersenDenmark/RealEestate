@@ -31,13 +31,24 @@ export class ListEstatesComponent implements OnInit {
  
 
   showEstateTypeSlider: boolean = false;
-  estateTypes: string[]= ["500.00", "750.000","1.000.000", "1.250.000" , "1.500.000",
-    "1.750.000","2.000.000", "2.250.000" , "2.500.000"]
+  estateTypes: string[]= ["Villa", "Sommerhus","Rækkehus", "Ejerlejlighed"]
   
-  estateTypeValue: number = this.estateTypeToIndex('Ejerlejlighed');
-  
+  estateTypeStr: string = "Sommerhus";
+  _estateTypeValue: number = this.estateTypeToIndex('Sommerhus');
+
+get estateTypeValue () : number {
+  return this._estateTypeValue
+}
+
+set estateTypeValue ( val: number) {
+  console.log("in set estateTypeValue")
+  this._estateTypeValue = val;
+  this.estateTypeStr = this.indexToEstateType(val)
+}
+
   estateTypeOptions: Options = {
     stepsArray: this.estateTypes.map((estateType: string): CustomStepDefinition => {
+      console.log("in stepsarray")
       return { value: this.estateTypeToIndex(estateType) };
     }),
     translate: (value: number, label: LabelType): string => {
@@ -56,27 +67,8 @@ export class ListEstatesComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-  
-  
   sHowRoomSlider: boolean = false;
-  _roomMinValue: number = 1;
-
-  set roomMinValue(val: number) {
-    this._roomMinValue = val;
-  }
-  get roomMinValue() : number {
-    return this._roomMinValue ;
-  }
-
+  roomMinValue: number = 1;
   roomMaxValue: number = 8;
   roomOptions: Options = {
     floor: 1,
@@ -86,18 +78,109 @@ export class ListEstatesComponent implements OnInit {
   };
 
   sHowPriceSlider: boolean = false;
-  priceMinValue: number = 0;
-  priceMaxValue: number = 100;
-  priceOptions: Options = {
+  priceFromToString!: string;
+
+
+  _priceFromMillionsMinValue: number = 0;
+
+  get priceFromMillionsMinValue() : number {
+    return this._priceFromMillionsMinValue;
+  }
+
+  set priceFromMillionsMinValue(val : number)  {
+     this._priceFromMillionsMinValue = val;
+     this.formatFromToPriceString();
+     this.priceToMillionsOptions = this.setNewFloor(val, this.priceToMillionsOptions)        
+  }
+ 
+  priceFromMillionsOptions: Options = {
     floor: 0,
-    ceil: 100,
-    step: 10,
-    showTicks: true
+    ceil: 10,
+    step: 1,
+    showTicks: true,
+    showTicksValues: true
   };
 
+  _priceFrom100KMinValue: number = 0;
+  get priceFrom100KMinValue() : number {
+    return this._priceFrom100KMinValue;
+  }
+
+  set priceFrom100KMinValue (val : number) {
+    this._priceFrom100KMinValue = val;
+    this.formatFromToPriceString();
+  }
+
+  priceFrom100KOptions: Options = {
+    floor: 0,
+    ceil: 9,
+    step: 1,
+    showTicks: true,
+    showTicksValues: true
+  };
+
+  _priceToMillionsMinValue: number = 2;
+  get priceToMillionsMinValue() : number {
+    return this._priceToMillionsMinValue;
+  }
+
+  set priceToMillionsMinValue (val : number) {
+    this._priceToMillionsMinValue = val;
+    console.log ("priceToMillionsMinValue " + this._priceToMillionsMinValue)
+    this.formatFromToPriceString();
+  }
+  priceToMillionsOptions: Options = {
+    floor: 0,
+    ceil: 10,
+    step: 1,
+    showTicks: true,
+    showTicksValues: true
+  };
+
+  _priceTo100KMinValue: number = 3;
+  get priceTo100KMinValue() : number {
+    return this._priceTo100KMinValue;
+  }
+
+  set priceTo100KMinValue (val : number) {
+    this._priceTo100KMinValue = val;
+    this.formatFromToPriceString();
+  }
+  priceTo100KOptions: Options = {
+    floor: 0,
+    ceil: 9,
+    step: 1,
+    showTicks: true,
+    showTicksValues: true
+  };
+
+  setNewFloor(newFloor: number, options: Options): Options {
+    // Due to change detection rules in Angular, we need to re-create the options object to apply the change
+    const newOptions: Options = Object.assign({}, options);
+    newOptions.floor = newFloor;
+    return newOptions;
+  }
   
+formatFromToPriceString() {
 
+  this.priceFromToString = "fra: "
 
+  if ( this.priceFromMillionsMinValue > 0)
+  {
+    this.priceFromToString =  this.priceFromToString + this.priceFromMillionsMinValue + ".";
+  }
+
+  this.priceFromToString =  this.priceFromToString + this.priceFrom100KMinValue + "00.000";
+
+  this.priceFromToString =  this.priceFromToString + " til: ";
+
+  if ( this.priceToMillionsMinValue > 0)
+  {
+    this.priceFromToString =  this.priceFromToString + this.priceToMillionsMinValue + "."
+  }
+
+  this.priceFromToString =  this.priceFromToString + this.priceTo100KMinValue + "00.000";
+}
 
 
 
@@ -302,6 +385,19 @@ export class ListEstatesComponent implements OnInit {
     }
   }
 
+ 
+
+  ToogleshowEstateTypeSlider
+  () {
+    if (this.showEstateTypeSlider)
+    {
+      this.showEstateTypeSlider = false;
+    }
+    else{
+      this.showEstateTypeSlider = true;
+    }
+  }
+
   ToogleSHowPriceSlider
   () {
     if (this.sHowPriceSlider)
@@ -313,4 +409,5 @@ export class ListEstatesComponent implements OnInit {
     }
   }
 
+  
 }

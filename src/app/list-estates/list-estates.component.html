@@ -27,12 +27,46 @@
 
         <button class="filter-button" type="button" (click)="ToogleSHowRoomSlider()">
             Værelser
-            {{roomMinValue}}
+            {{roomMinValue}} - {{roomMaxValue}}
         </button>
 
-        <app-sliders *ngIf="sHowRoomSlider" [(estateValue)]="roomMinValue" [(estateMaxValue)]="roomMaxValue" [estateOptions]="roomOptions">
+        <app-sliders *ngIf="sHowRoomSlider" [(estateValue)]="roomMinValue" [(estateMaxValue)]="roomMaxValue"
+            [estateOptions]="roomOptions">
         </app-sliders>
 
+
+        <button class="filter-button" type="button" (click)="ToogleshowEstateTypeSlider()">
+            Boligtype
+            type {{estateTypeStr}}
+        </button>
+
+        <app-sliders *ngIf="showEstateTypeSlider" [(estateValue)]="estateTypeValue" [estateOptions]="estateTypeOptions">
+        </app-sliders>
+
+        <button class="filter-button" type="button" (click)="ToogleSHowPriceSlider()">
+            Pris
+            {{priceToMillionsOptions.floor}} {{priceFromToString}}  
+        </button>
+
+       
+            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceFromMillionsMinValue"
+                [estateOptions]="priceFromMillionsOptions">
+            </app-sliders>
+        
+        
+            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceFrom100KMinValue"
+                [estateOptions]="priceFrom100KOptions">
+            </app-sliders>
+      
+       
+            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceToMillionsMinValue"
+                [estateOptions]="priceToMillionsOptions">
+            </app-sliders>
+        
+            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceTo100KMinValue"
+                [estateOptions]="priceTo100KOptions">
+            </app-sliders>
+        
 
     </div>
 

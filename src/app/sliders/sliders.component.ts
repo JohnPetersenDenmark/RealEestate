@@ -7,37 +7,70 @@ import { Options } from '@angular-slider/ngx-slider';
   templateUrl: './sliders.component.html',
   styleUrls: ['./sliders.component.scss']
 })
-export class SlidersComponent   {
+export class SlidersComponent implements OnInit {
+
+
+  @Input() set estateValue(val: number) {
+    this.lowValue = val;
+  };
+  get estateValue(): number {
+    return this.lowValue
+  }
+
+  @Input() set estateOptions(options: Options) {
+    this.options = options;
+  }
+
+  get estateOptions() : Options {
+    return  this.options ;
+  }
+
+
+  @Input() estateMaxValue!: number;
  
 
-  @Input() estateValue!: number;
-  @Input() estateMaxValue!: number;
-  @Input() estateOptions!: Options;
-
-  
   @Output() estateValueChange = new EventEmitter<number>();
   @Output() estateMaxValueChange = new EventEmitter<number>();
 
-  
-  // lowValue!: number;
-  // highValue!: number;
-  // options!: Options;
+  private _lowValue!: number;
 
- 
+  get lowValue(): number {
+    return this._lowValue
+  }
 
-  
+  set lowValue(val: number) {
+    console.log("lowValue changed: " + val);
+    this._lowValue = val;
+    this.estateValueChange.emit(val);
+
+  }
+
+  private _highValue!: number;
+
+  get highValue(): number {
+    return this._highValue
+  }
+
+  set highValue(val: number) {
+    console.log("highValue changed: " + val);
+    this._highValue = val;
+    this.estateMaxValueChange.emit(val);
+
+  }
+
+
+  options!: Options;
+
 
   constructor() {
-  
+
   }
 
   ngOnInit(): void {
- 
-    // this.lowValue = this.estateValue;
-    // this.highValue = this.estateMaxValue;
-    // this.options = this.estateOptions;
+
+    this.lowValue = this.estateValue;
+    this.highValue = this.estateMaxValue;
+    this.options = this.estateOptions;
   }
-  
- 
 
 }
