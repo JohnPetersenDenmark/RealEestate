@@ -11,6 +11,7 @@ export class SlidersComponent implements OnInit {
 
 
   @Input() set estateValue(val: number) {
+    console.log("estateValue in slider" + val)
     this.lowValue = val;
   };
   get estateValue(): number {
@@ -26,8 +27,16 @@ export class SlidersComponent implements OnInit {
   }
 
 
-  @Input() estateMaxValue!: number;
  
+  @Input() set estateMaxValue(val: number) {
+    this.highValue = val;
+  }
+
+  get estateMaxValue() : number {
+    return  this.highValue ;
+  }
+
+
 
   @Output() estateValueChange = new EventEmitter<number>();
   @Output() estateMaxValueChange = new EventEmitter<number>();

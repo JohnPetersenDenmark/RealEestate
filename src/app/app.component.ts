@@ -39,18 +39,18 @@ export class AppComponent implements OnInit {
 
     let secondsCounter = interval(10000);
     const subscription = secondsCounter.subscribe(n => {
-      console.log(`It's been ${n + 1} seconds since subscribing!`);
+      //console.log(`It's been ${n + 1} seconds since subscribing!`);
 
       let observable = this.checkIfLoggedInService.IsLoggedInAA().subscribe( result => {      
         this.isLoggedIn = true;
-        console.log("got answer true ");
+       // console.log("got answer true ");
       },
       error => {
-        console.error('Observer got an error: ');
+     //   console.error('Observer got an error: ');
         this.isLoggedIn = false;
       },
 
-       () => console.log('Observer got a complete notification'),
+       () => 1 //console.log('Observer got a complete notification'),
 
 
     );

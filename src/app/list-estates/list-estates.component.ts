@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { EstateService } from '../estate.service';
 import { Estate } from '../models/Estate.model';
 import { Observable } from 'rxjs';
@@ -17,6 +17,13 @@ import { EstateSearchHit } from '../models/search-hit.model';
 
 export class ListEstatesComponent implements OnInit {
 
+
+  constructor(private _estateService: EstateService, private router: Router) {
+   
+  }
+
+ 
+
   viewModel: Estate[] = [];
   filteredEstates: Estate[] = [];
 
@@ -28,23 +35,23 @@ export class ListEstatesComponent implements OnInit {
   public pageNumber: number = 1;
   public Count!: number;
 
- 
+
 
   showEstateTypeSlider: boolean = false;
-  estateTypes: string[]= ["Villa", "Sommerhus","Rækkehus", "Ejerlejlighed"]
-  
+  estateTypes: string[] = ["Villa", "Sommerhus", "Rækkehus", "Ejerlejlighed"]
+
   estateTypeStr: string = "Sommerhus";
   _estateTypeValue: number = this.estateTypeToIndex('Sommerhus');
 
-get estateTypeValue () : number {
-  return this._estateTypeValue
-}
+  get estateTypeValue(): number {
+    return this._estateTypeValue
+  }
 
-set estateTypeValue ( val: number) {
-  console.log("in set estateTypeValue")
-  this._estateTypeValue = val;
-  this.estateTypeStr = this.indexToEstateType(val)
-}
+  set estateTypeValue(val: number) {
+    console.log("in set estateTypeValue")
+    this._estateTypeValue = val;
+    this.estateTypeStr = this.indexToEstateType(val)
+  }
 
   estateTypeOptions: Options = {
     stepsArray: this.estateTypes.map((estateType: string): CustomStepDefinition => {
@@ -83,16 +90,34 @@ set estateTypeValue ( val: number) {
 
   _priceFromMillionsMinValue: number = 0;
 
-  get priceFromMillionsMinValue() : number {
+  get priceFromMillionsMinValue(): number {
     return this._priceFromMillionsMinValue;
   }
 
-  set priceFromMillionsMinValue(val : number)  {
-     this._priceFromMillionsMinValue = val;
-     this.formatFromToPriceString();
-     this.priceToMillionsOptions = this.setNewFloor(val, this.priceToMillionsOptions)        
+  set priceFromMillionsMinValue(val: number) {
+    let oldVal = this._priceFromMillionsMinValue;
+    this._priceFromMillionsMinValue = val;
+    console.log(" setting priceFromMillionsMinValue to  new  value" + val)
+
+    if (!this.IsToPriceLargerThanFromPrice(val, this.priceFrom100KMinValue,
+      this.priceToMillionsMinValue, this._priceTo100KMinValue)) {
+
+      console.log(" !PriceLargerThanFromPrice ")
+      this._priceFromMillionsMinValue = oldVal;
+
+      console.log(" setting priceFromMillionsMinValue to  old value" + oldVal)
+    }
+    // else {
+    //   this._priceFromMillionsMinValue = val;
+    //   console.log(" setting priceFromMillionsMinValue to  new  value" + val)
+    // }
+
+    this.formatFromToPriceString();
+
+    // this.priceToMillionsOptions = this.setNewFloor(val, this.priceToMillionsOptions);
+    // this.priceToMillionsMinValue = val;
   }
- 
+
   priceFromMillionsOptions: Options = {
     floor: 0,
     ceil: 10,
@@ -102,13 +127,22 @@ set estateTypeValue ( val: number) {
   };
 
   _priceFrom100KMinValue: number = 0;
-  get priceFrom100KMinValue() : number {
+  get priceFrom100KMinValue(): number {
     return this._priceFrom100KMinValue;
   }
 
-  set priceFrom100KMinValue (val : number) {
+  set priceFrom100KMinValue(val: number) {
+    let oldVal = this._priceFrom100KMinValue;
+    console.log(" priceFrom100KMinValue  old new" + oldVal + " " + val)
     this._priceFrom100KMinValue = val;
+    if (!this.IsToPriceLargerThanFromPrice(this.priceFromMillionsMinValue, val, 
+      this.priceToMillionsMinValue, this._priceTo100KMinValue)) {
+      console.log(" !PriceLargerThanFromPrice " + this._priceToMillionsMinValue)
+      this._priceFrom100KMinValue = oldVal;
+    }
     this.formatFromToPriceString();
+    // this.priceTo100KOptions = this.setNewFloor(val, this.priceFrom100KOptions);
+    // this.priceTo100KMinValue = val;
   }
 
   priceFrom100KOptions: Options = {
@@ -120,13 +154,13 @@ set estateTypeValue ( val: number) {
   };
 
   _priceToMillionsMinValue: number = 2;
-  get priceToMillionsMinValue() : number {
+  get priceToMillionsMinValue(): number {
     return this._priceToMillionsMinValue;
   }
 
-  set priceToMillionsMinValue (val : number) {
+  set priceToMillionsMinValue(val: number) {
     this._priceToMillionsMinValue = val;
-    console.log ("priceToMillionsMinValue " + this._priceToMillionsMinValue)
+    console.log("priceToMillionsMinValue " + this._priceToMillionsMinValue)
     this.formatFromToPriceString();
   }
   priceToMillionsOptions: Options = {
@@ -138,11 +172,11 @@ set estateTypeValue ( val: number) {
   };
 
   _priceTo100KMinValue: number = 3;
-  get priceTo100KMinValue() : number {
+  get priceTo100KMinValue(): number {
     return this._priceTo100KMinValue;
   }
 
-  set priceTo100KMinValue (val : number) {
+  set priceTo100KMinValue(val: number) {
     this._priceTo100KMinValue = val;
     this.formatFromToPriceString();
   }
@@ -154,40 +188,54 @@ set estateTypeValue ( val: number) {
     showTicksValues: true
   };
 
+  IsToPriceLargerThanFromPrice(priceFromMillionsVal: number, priceFrom200KVal: number,
+    priceToMillionsVal: number, priceTo200KVal: number): boolean {
+    let fromPriceString: string = priceFromMillionsVal + "." + priceFrom200KVal;
+    let toPriceString: string = priceToMillionsVal +  "." + priceTo200KVal;
+
+    let fromPrice: number = parseFloat(fromPriceString);
+    let toPrice: number = parseFloat(toPriceString);
+
+    console.log(" from price  to price " + fromPrice + " " + toPrice)
+
+    if (toPrice >= fromPrice) {
+      return true;
+    }
+
+    return false;
+  }
+
   setNewFloor(newFloor: number, options: Options): Options {
     // Due to change detection rules in Angular, we need to re-create the options object to apply the change
     const newOptions: Options = Object.assign({}, options);
     newOptions.floor = newFloor;
     return newOptions;
   }
-  
-formatFromToPriceString() {
 
-  this.priceFromToString = "fra: "
+  formatFromToPriceString() {
 
-  if ( this.priceFromMillionsMinValue > 0)
-  {
-    this.priceFromToString =  this.priceFromToString + this.priceFromMillionsMinValue + ".";
+    this.priceFromToString = "fra: "
+
+    if (this.priceFromMillionsMinValue > 0) {
+      this.priceFromToString = this.priceFromToString + this.priceFromMillionsMinValue + ".";
+    }
+
+    this.priceFromToString = this.priceFromToString + this.priceFrom100KMinValue + "00.000";
+
+    this.priceFromToString = this.priceFromToString + " til: ";
+
+    if (this.priceToMillionsMinValue > 0) {
+      this.priceFromToString = this.priceFromToString + this.priceToMillionsMinValue + "."
+    }
+
+    this.priceFromToString = this.priceFromToString + this.priceTo100KMinValue + "00.000";
   }
-
-  this.priceFromToString =  this.priceFromToString + this.priceFrom100KMinValue + "00.000";
-
-  this.priceFromToString =  this.priceFromToString + " til: ";
-
-  if ( this.priceToMillionsMinValue > 0)
-  {
-    this.priceFromToString =  this.priceFromToString + this.priceToMillionsMinValue + "."
-  }
-
-  this.priceFromToString =  this.priceFromToString + this.priceTo100KMinValue + "00.000";
-}
 
 
 
   private _searchString: string = "";
 
   get searchString(): string {
-    console.log("in GET searchString " + this._searchString)
     return this._searchString;
   }
 
@@ -211,17 +259,17 @@ formatFromToPriceString() {
     this.viewModel.forEach((estate: Estate) => {
 
       let textToSearchIn = estate.Address1.toLowerCase();
-      let tmpArray =  this.findHit(textToSearchIn, searchStr.toLowerCase(), "Sted")
-      tmpArray.forEach(tmpHit => {searchTermsAddress.push(tmpHit)} )
+      let tmpArray = this.findHit(textToSearchIn, searchStr.toLowerCase(), "Sted")
+      tmpArray.forEach(tmpHit => { searchTermsAddress.push(tmpHit) })
       console.log("searchTermsAddress " + searchTermsAddress.length);
-      
+
       textToSearchIn = estate.City.toLowerCase();
       tmpArray = this.findHit(textToSearchIn, searchStr.toLowerCase(), "By");
-      tmpArray.forEach(tmpHit => {searchTermsCity.push(tmpHit)} )
+      tmpArray.forEach(tmpHit => { searchTermsCity.push(tmpHit) })
 
       textToSearchIn = estate.Zip.toLowerCase();
-      tmpArray = this.findHit(textToSearchIn, searchStr.toLowerCase(),  "Postnr.");
-      tmpArray.forEach(tmpHit => {searchTermsZip.push(tmpHit)} )
+      tmpArray = this.findHit(textToSearchIn, searchStr.toLowerCase(), "Postnr.");
+      tmpArray.forEach(tmpHit => { searchTermsZip.push(tmpHit) })
     })
 
     if (searchTermsAddress.length > 0) {
@@ -230,7 +278,7 @@ formatFromToPriceString() {
       hit.FoundInCategory = "Sted"
       hit.IsDivider = true;
       searchTermsAll.push(hit);
-      searchTermsAddress.forEach(tmpHit => {searchTermsAll.push(tmpHit)} )     
+      searchTermsAddress.forEach(tmpHit => { searchTermsAll.push(tmpHit) })
     }
 
     if (searchTermsCity.length > 0) {
@@ -238,7 +286,7 @@ formatFromToPriceString() {
       hit.FoundInCategory = "By"
       hit.IsDivider = true;
       searchTermsAll.push(hit);
-      searchTermsCity.forEach(tmpHit => {searchTermsAll.push(tmpHit)} )          
+      searchTermsCity.forEach(tmpHit => { searchTermsAll.push(tmpHit) })
     }
 
     if (searchTermsZip.length > 0) {
@@ -246,14 +294,14 @@ formatFromToPriceString() {
       hit.FoundInCategory = "Postnr."
       hit.IsDivider = true;
       searchTermsAll.push(hit);
-      searchTermsZip.forEach(tmpHit => {searchTermsAll.push(tmpHit)} )    
+      searchTermsZip.forEach(tmpHit => { searchTermsAll.push(tmpHit) })
     }
 
     return searchTermsAll;
 
   }
 
-  findHit(textToSearchIn: string, searchStr: string,  category: string): EstateSearchHit[] {
+  findHit(textToSearchIn: string, searchStr: string, category: string): EstateSearchHit[] {
 
     let hitArray: EstateSearchHit[] = [];
 
@@ -264,7 +312,7 @@ formatFromToPriceString() {
     if (pos !== -1) {
       // let x = this.searchTerms.find(tmpHit => tmpHit.FoundInCategory == category && tmpHit.TextHit == searchStr);
       // if (x == undefined) {
-        console.log("findHit we got a hit");
+      console.log("findHit we got a hit");
       let hit = new EstateSearchHit();
       hit.FoundInCategory = category;
       hit.TextBeforeHit = textToSearchIn.substring(0, pos);
@@ -287,24 +335,21 @@ formatFromToPriceString() {
 
   filterEstates() {
     console.log("in filter estates " + this.selectedSearchTerm.TextHit.toLowerCase());
-    if (this.selectedSearchTerm.FoundInCategory == "Sted")
-    {
+    if (this.selectedSearchTerm.FoundInCategory == "Sted") {
       this.filteredEstates = this.viewModel.filter(estate =>
         estate.Address1.toLowerCase().indexOf
-        (this.selectedSearchTerm.TextHit.toLowerCase() + this.selectedSearchTerm.TextAfterHit.toLowerCase()) !== -1);
+          (this.selectedSearchTerm.TextHit.toLowerCase() + this.selectedSearchTerm.TextAfterHit.toLowerCase()) !== -1);
     }
 
-    if (this.selectedSearchTerm.FoundInCategory == "By")
-    {
+    if (this.selectedSearchTerm.FoundInCategory == "By") {
       console.log("in filter estates by postnr " + this.selectedSearchTerm.TextHit.toLowerCase());
       this.filteredEstates = this.viewModel.filter(estate =>
-        estate.City.toLowerCase().indexOf(this.selectedSearchTerm.TextHit.toLowerCase()+ this.selectedSearchTerm.TextAfterHit.toLowerCase()) !== -1);
-        console.log("in filter estates by postnr  hit count " + this.filteredEstates.length);
-        console.log("in filter estates by postnr  viewModel " + this.viewModel.length);
+        estate.City.toLowerCase().indexOf(this.selectedSearchTerm.TextHit.toLowerCase() + this.selectedSearchTerm.TextAfterHit.toLowerCase()) !== -1);
+      console.log("in filter estates by postnr  hit count " + this.filteredEstates.length);
+      console.log("in filter estates by postnr  viewModel " + this.viewModel.length);
     }
 
-    if (this.selectedSearchTerm.FoundInCategory == "Postnr.")
-    {
+    if (this.selectedSearchTerm.FoundInCategory == "Postnr.") {
       this.filteredEstates = this.viewModel.filter(estate =>
         estate.Zip.toLowerCase().indexOf(this.selectedSearchTerm.TextHit.toLowerCase()) !== -1);
     }
@@ -312,10 +357,7 @@ formatFromToPriceString() {
 
   }
 
-  constructor(private _estateService: EstateService, private router: Router) {
-
-  }
-
+  
 
   ngOnInit() {
     this._estateService.getEstateList().subscribe(result => {
@@ -366,48 +408,44 @@ formatFromToPriceString() {
   }
 
   ToogleSHowEstateTypeSlider() {
-    if (this.showEstateTypeSlider)
-    {
+    if (this.showEstateTypeSlider) {
       this.showEstateTypeSlider = false;
     }
-    else{
+    else {
       this.showEstateTypeSlider = true;
     }
   }
-  
+
   ToogleSHowRoomSlider() {
-    if (this.sHowRoomSlider)
-    {
+    if (this.sHowRoomSlider) {
       this.sHowRoomSlider = false;
     }
-    else{
+    else {
       this.sHowRoomSlider = true;
     }
   }
 
- 
+
 
   ToogleshowEstateTypeSlider
-  () {
-    if (this.showEstateTypeSlider)
-    {
+    () {
+    if (this.showEstateTypeSlider) {
       this.showEstateTypeSlider = false;
     }
-    else{
+    else {
       this.showEstateTypeSlider = true;
     }
   }
 
   ToogleSHowPriceSlider
-  () {
-    if (this.sHowPriceSlider)
-    {
+    () {
+    if (this.sHowPriceSlider) {
       this.sHowPriceSlider = false;
     }
-    else{
+    else {
       this.sHowPriceSlider = true;
     }
   }
 
-  
+
 }
