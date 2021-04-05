@@ -36,7 +36,14 @@ export class SlidersComponent implements OnInit {
     return  this.highValue ;
   }
 
+@Input() set priceFromMillionsMinValueCorrected(val : number) {
+  console.log("priceFromMillionsMinValueCorrected : " + val);
+  this.lowValue = val;
+}
 
+get priceFromMillionsMinValueCorrected() : number {
+return 1;
+}
 
   @Output() estateValueChange = new EventEmitter<number>();
   @Output() estateMaxValueChange = new EventEmitter<number>();
@@ -49,7 +56,7 @@ export class SlidersComponent implements OnInit {
 
   set lowValue(val: number) {
     console.log("lowValue changed: " + val);
-    this._lowValue = val;
+    this._lowValue = val;       
     this.estateValueChange.emit(val);
 
   }

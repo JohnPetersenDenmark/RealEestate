@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { EstateService } from '../estate.service';
 import { Estate } from '../models/Estate.model';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { Options, CustomStepDefinition, LabelType } from '@angular-slider/ngx-slider';
 import { EstateSearchHit } from '../models/search-hit.model';
+import { SlidersComponent } from '../sliders/sliders.component';
 
 
 
@@ -15,14 +16,22 @@ import { EstateSearchHit } from '../models/search-hit.model';
   styleUrls: ['./list-estates.component.css']
 })
 
-export class ListEstatesComponent implements OnInit {
+export class ListEstatesComponent implements OnInit, AfterViewInit {
 
 
   constructor(private _estateService: EstateService, private router: Router) {
-   
+
   }
 
- 
+  @ViewChildren(SlidersComponent) child!: QueryList<SlidersComponent>;
+
+  ngAfterViewInit() {
+    console.log("slider estateValue ");
+    this.child.forEach(slider => {
+
+      console.log("slider  " + slider.lowValue);
+    });
+  }
 
   viewModel: Estate[] = [];
   filteredEstates: Estate[] = [];
@@ -84,9 +93,8 @@ export class ListEstatesComponent implements OnInit {
     showTicks: true
   };
 
-  sHowPriceSlider: boolean = false;
+  sHowPriceSlider: boolean = true;
   priceFromToString!: string;
-
 
   _priceFromMillionsMinValue: number = 0;
 
@@ -104,6 +112,16 @@ export class ListEstatesComponent implements OnInit {
 
       console.log(" !PriceLargerThanFromPrice ")
       this._priceFromMillionsMinValue = oldVal;
+      let index = 0;
+      this.child.forEach(slider => {
+        if (index == 0) {
+          slider.lowValue = oldVal;
+
+        }
+        this.child.dirty;
+      })
+      //this.priceFromMillionsMinValueCorrected = oldVal;
+
 
       console.log(" setting priceFromMillionsMinValue to  old value" + oldVal)
     }
@@ -135,7 +153,7 @@ export class ListEstatesComponent implements OnInit {
     let oldVal = this._priceFrom100KMinValue;
     console.log(" priceFrom100KMinValue  old new" + oldVal + " " + val)
     this._priceFrom100KMinValue = val;
-    if (!this.IsToPriceLargerThanFromPrice(this.priceFromMillionsMinValue, val, 
+    if (!this.IsToPriceLargerThanFromPrice(this.priceFromMillionsMinValue, val,
       this.priceToMillionsMinValue, this._priceTo100KMinValue)) {
       console.log(" !PriceLargerThanFromPrice " + this._priceToMillionsMinValue)
       this._priceFrom100KMinValue = oldVal;
@@ -191,7 +209,7 @@ export class ListEstatesComponent implements OnInit {
   IsToPriceLargerThanFromPrice(priceFromMillionsVal: number, priceFrom200KVal: number,
     priceToMillionsVal: number, priceTo200KVal: number): boolean {
     let fromPriceString: string = priceFromMillionsVal + "." + priceFrom200KVal;
-    let toPriceString: string = priceToMillionsVal +  "." + priceTo200KVal;
+    let toPriceString: string = priceToMillionsVal + "." + priceTo200KVal;
 
     let fromPrice: number = parseFloat(fromPriceString);
     let toPrice: number = parseFloat(toPriceString);
@@ -357,7 +375,7 @@ export class ListEstatesComponent implements OnInit {
 
   }
 
-  
+
 
   ngOnInit() {
     this._estateService.getEstateList().subscribe(result => {
