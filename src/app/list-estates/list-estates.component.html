@@ -49,20 +49,20 @@
         </button>
 
        
-            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceFromMillionsMinValue" [estateOptions]="priceFromMillionsOptions">
+            <app-sliders mytype="millonsfrom" [hidden]="!sHowPriceSlider"  [(estateValue)]="priceFromMillionsMinValue" [estateOptions]="priceFromMillionsOptions">
             </app-sliders>
         
         
-            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceFrom100KMinValue"
+            <app-sliders mytype="100kfrom" [hidden]="!sHowPriceSlider" [(estateValue)]="priceFrom100KMinValue"
                 [estateOptions]="priceFrom100KOptions">
             </app-sliders>
       
        
-            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceToMillionsMinValue"
+            <app-sliders mytype="millonsto" [hidden]="!sHowPriceSlider"  [(estateValue)]="priceToMillionsMinValue"
                 [estateOptions]="priceToMillionsOptions">
             </app-sliders>
         
-            <app-sliders *ngIf="sHowPriceSlider" [(estateValue)]="priceTo100KMinValue"
+            <app-sliders mytype="100kto" [hidden]="!sHowPriceSlider"  [(estateValue)]="priceTo100KMinValue"
                 [estateOptions]="priceTo100KOptions">
             </app-sliders>
         

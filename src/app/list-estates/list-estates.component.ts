@@ -29,7 +29,7 @@ export class ListEstatesComponent implements OnInit, AfterViewInit {
     console.log("slider estateValue ");
     this.child.forEach(slider => {
 
-      console.log("slider  " + slider.lowValue);
+      console.log("slider  " + slider);
     });
   }
 
@@ -96,7 +96,7 @@ export class ListEstatesComponent implements OnInit, AfterViewInit {
   sHowPriceSlider: boolean = true;
   priceFromToString!: string;
 
-  _priceFromMillionsMinValue: number = 0;
+  _priceFromMillionsMinValue: number = 1;
 
   get priceFromMillionsMinValue(): number {
     return this._priceFromMillionsMinValue;
@@ -114,11 +114,16 @@ export class ListEstatesComponent implements OnInit, AfterViewInit {
       this._priceFromMillionsMinValue = oldVal;
       let index = 0;
       this.child.forEach(slider => {
-        if (index == 0) {
-          slider.lowValue = oldVal;
-
-        }
-        this.child.dirty;
+      //  if (index == 0) {
+      //  if ( slider.mytype === "millonsfrom")
+       // {
+          slider.estateValue = oldVal;
+          console.log(" setting slider low value " + slider.estateValue + " in" + slider.mytype );
+       // }
+      
+      //  }
+       // this.child.dirty;
+       index++;
       })
       //this.priceFromMillionsMinValueCorrected = oldVal;
 
@@ -129,7 +134,7 @@ export class ListEstatesComponent implements OnInit, AfterViewInit {
     //   this._priceFromMillionsMinValue = val;
     //   console.log(" setting priceFromMillionsMinValue to  new  value" + val)
     // }
-
+ 
     this.formatFromToPriceString();
 
     // this.priceToMillionsOptions = this.setNewFloor(val, this.priceToMillionsOptions);
@@ -144,7 +149,7 @@ export class ListEstatesComponent implements OnInit, AfterViewInit {
     showTicksValues: true
   };
 
-  _priceFrom100KMinValue: number = 0;
+  _priceFrom100KMinValue: number = 5;
   get priceFrom100KMinValue(): number {
     return this._priceFrom100KMinValue;
   }
@@ -178,6 +183,20 @@ export class ListEstatesComponent implements OnInit, AfterViewInit {
 
   set priceToMillionsMinValue(val: number) {
     this._priceToMillionsMinValue = val;
+
+    this.child.forEach(slider => {
+      //  if (index == 0) {
+      //  if ( slider.mytype === "millonsfrom")
+       // {
+          slider.estateValue = 8;
+          console.log(" setting slider low value " + slider.estateValue + " in" + slider.mytype );
+       // }
+      
+      //  }
+       // this.child.dirty;
+      
+      })
+
     console.log("priceToMillionsMinValue " + this._priceToMillionsMinValue)
     this.formatFromToPriceString();
   }

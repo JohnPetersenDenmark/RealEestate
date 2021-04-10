@@ -9,6 +9,8 @@ import { Options } from '@angular-slider/ngx-slider';
 })
 export class SlidersComponent implements OnInit {
 
+  @Input()
+  mytype!: string;
 
   @Input() set estateValue(val: number) {
     console.log("estateValue in slider" + val)
@@ -41,9 +43,7 @@ export class SlidersComponent implements OnInit {
   this.lowValue = val;
 }
 
-get priceFromMillionsMinValueCorrected() : number {
-return 1;
-}
+
 
   @Output() estateValueChange = new EventEmitter<number>();
   @Output() estateMaxValueChange = new EventEmitter<number>();
